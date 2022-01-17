@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 $routes->resource('restapi/mahasiswa');
+$routes->resource('restapi/dosen');
 
 /*
  * --------------------------------------------------------------------
