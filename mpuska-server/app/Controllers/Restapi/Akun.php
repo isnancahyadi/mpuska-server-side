@@ -79,30 +79,6 @@ class Akun extends ResourceController
         } else {
             return $this->fail($this->akun->errors());
         }
-
-
-        // if (!$this->akun->insert($post)) {
-        //     return $this->fail($this->akun->errors());
-        // } else {
-        //     $hakAkses = "";
-
-        //     if ($searchMhs) {
-        //         $hakAkses = "2";
-        //     } elseif ($searchDos) {
-        //         $hakAkses = "1";
-        //     } else {
-        //         return $this->failNotFound('User tidak ditemukan');
-        //     }
-
-        //     $data = [
-        //         'username'  => $post['username'],
-        //         'password'  => password_hash($post['password'], PASSWORD_DEFAULT),
-        //         'hak_akses' => $hakAkses
-        //     ];
-
-        //     $save = $this->akun->insert($data);
-        //     return $this->respondCreated($save);
-        // }
     }
 
     /**
