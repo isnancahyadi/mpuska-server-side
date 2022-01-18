@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->resource('restapi/akun');
 $routes->resource('restapi/mahasiswa');
 $routes->resource('restapi/dosen');
 $routes->resource('restapi/matakuliah');
