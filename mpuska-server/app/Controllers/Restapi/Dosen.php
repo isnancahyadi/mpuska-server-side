@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Restapi;
 
+use App\Models\AlamatDosModel;
 use App\Models\DosenModel;
 use App\Models\NamaDosModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -10,8 +11,9 @@ class Dosen extends ResourceController
 {
     function __construct()
     {
-        $this->dos      = new DosenModel();
-        $this->namaDos  = new NamaDosModel();
+        $this->dos          = new DosenModel();
+        $this->namaDos      = new NamaDosModel();
+        $this->alamatDos    = new AlamatDosModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -69,12 +71,26 @@ class Dosen extends ResourceController
             'nama_belakang' => $this->request->getVar('nama_belakang'),
         ];
 
+        $dataAlamatDos = [
+            'niy'       => $this->request->getVar('niy'),
+            'alamat'    => $this->request->getVar('alamat'),
+            'kecamatan' => $this->request->getVar('kecamatan'),
+            'kabupaten' => $this->request->getVar('kabupaten'),
+            'provinsi'  => $this->request->getVar('provinsi'),
+            'kode_pos'  => $this->request->getVar('kode_pos')
+        ];
+
         $this->dos->insert($dataDos);
         $this->namaDos->insert($dataNamaDos);
+        $this->alamatDos->insert($dataAlamatDos);
 
         if ($this->dos->affectedRows() > 0) {
             if ($this->namaDos->affectedRows() > 0) {
-                return $this->respondCreated('Data berhasil tersimpan');
+                if ($this->alamatDos->affectedRows() > 0) {
+                    return $this->respondCreated('Data berhasil tersimpan');
+                } else {
+                    return $this->fail($this->dos->errors());
+                }
             } else {
                 return $this->fail($this->dos->errors());
             }
