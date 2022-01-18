@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Restapi;
 
+use App\Models\AlamatMhsModel;
 use App\Models\MahasiswaModel;
 use App\Models\NamaMhsModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -10,8 +11,9 @@ class Mahasiswa extends ResourceController
 {
     function __construct()
     {
-        $this->mhs      = new MahasiswaModel();
-        $this->namaMhs  = new NamaMhsModel();
+        $this->mhs          = new MahasiswaModel();
+        $this->namaMhs      = new NamaMhsModel();
+        $this->alamatMhs    = new AlamatMhsModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -66,15 +68,29 @@ class Mahasiswa extends ResourceController
             'nim'           => $this->request->getVar('nim'),
             'nama_depan'    => $this->request->getVar('nama_depan'),
             'nama_tengah'   => $this->request->getVar('nama_tengah'),
-            'nama_belakang' => $this->request->getVar('nama_belakang'),
+            'nama_belakang' => $this->request->getVar('nama_belakang')
+        ];
+
+        $dataAlamatMhs = [
+            'nim'       => $this->request->getVar('nim'),
+            'alamat'    => $this->request->getVar('alamat'),
+            'kecamatan' => $this->request->getVar('kecamatan'),
+            'kabupaten' => $this->request->getVar('kabupaten'),
+            'provinsi'  => $this->request->getVar('provinsi'),
+            'kode_pos'  => $this->request->getVar('kode_pos')
         ];
 
         $this->mhs->insert($dataMhs);
         $this->namaMhs->insert($dataNamaMhs);
+        $this->alamatMhs->insert($dataAlamatMhs);
 
         if ($this->mhs->affectedRows() > 0) {
             if ($this->namaMhs->affectedRows() > 0) {
-                return $this->respondCreated('Data berhasil tersimpan');
+                if ($this->alamatMhs->affectedRows() > 0) {
+                    return $this->respondCreated('Data berhasil tersimpan');
+                } else {
+                    return $this->fail($this->mhs->errors());
+                }
             } else {
                 return $this->fail($this->mhs->errors());
             }
