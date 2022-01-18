@@ -35,6 +35,7 @@ $routes->get('/', 'Home::index');
 
 $routes->resource('restapi/mahasiswa');
 $routes->resource('restapi/dosen');
+$routes->resource('restapi/matakuliah');
 
 /*
  * --------------------------------------------------------------------
