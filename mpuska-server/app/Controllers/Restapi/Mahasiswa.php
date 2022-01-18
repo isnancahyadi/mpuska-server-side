@@ -10,8 +10,8 @@ class Mahasiswa extends ResourceController
 {
     function __construct()
     {
-        $this->mhs = new MahasiswaModel();
-        $this->namaMhs = new NamaMhsModel();
+        $this->mhs      = new MahasiswaModel();
+        $this->namaMhs  = new NamaMhsModel();
     }
     /**
      * Return an array of resource objects, themselves in array format

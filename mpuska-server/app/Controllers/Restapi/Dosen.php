@@ -3,13 +3,15 @@
 namespace App\Controllers\Restapi;
 
 use App\Models\DosenModel;
+use App\Models\NamaDosModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class Dosen extends ResourceController
 {
     function __construct()
     {
-        $this->dos = new DosenModel();
+        $this->dos      = new DosenModel();
+        $this->namaDos  = new NamaDosModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -50,12 +52,32 @@ class Dosen extends ResourceController
     // Input data Dosen
     public function create()
     {
-        $data = $this->request->getPost();
+        $dataDos = [
+            'niy'           => $this->request->getVar('niy'),
+            'gender'        => $this->request->getVar('gender'),
+            'tempat_lahir'  => $this->request->getVar('tempat_lahir'),
+            'tgl_lahir'     => $this->request->getVar('tgl_lahir'),
+            'no_hp'         => $this->request->getVar('no_hp'),
+            'email'         => $this->request->getVar('email'),
+            'foto'          => $this->request->getVar('foto')
+        ];
 
-        $this->dos->insert($data);
+        $dataNamaDos = [
+            'niy'           => $this->request->getVar('niy'),
+            'nama_depan'    => $this->request->getVar('nama_depan'),
+            'nama_tengah'   => $this->request->getVar('nama_tengah'),
+            'nama_belakang' => $this->request->getVar('nama_belakang'),
+        ];
+
+        $this->dos->insert($dataDos);
+        $this->namaDos->insert($dataNamaDos);
 
         if ($this->dos->affectedRows() > 0) {
-            return $this->respondCreated('Data berhasil tersimpan');
+            if ($this->namaDos->affectedRows() > 0) {
+                return $this->respondCreated('Data berhasil tersimpan');
+            } else {
+                return $this->fail($this->dos->errors());
+            }
         } else {
             return $this->fail($this->dos->errors());
         }
