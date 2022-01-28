@@ -51,4 +51,14 @@ class MahasiswaModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    function getAll()
+    {
+        $builder = $this->db->table('mahasiswa');
+        $builder->join('ca_nama_mahasiswa', 'ca_nama_mahasiswa.nim = mahasiswa.nim');
+        $builder->join('ca_alamat_mahasiswa', 'ca_alamat_mahasiswa.nim = mahasiswa.nim');
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

@@ -22,7 +22,9 @@ class Mahasiswa extends ResourceController
      */
     public function index()
     {
-        //
+        $data['mahasiswa'] = $this->mhs->getAll();
+        return view('mahasiswa/index', $data);
+        // return $this->respond($data);
     }
 
     /**
