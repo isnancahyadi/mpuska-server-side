@@ -9,7 +9,7 @@
     <div class="section-header">
         <h1>Mahasiswa</h1>
         <div class="section-header-button">
-            <a href="#" class="btn btn-primary">Add New</a>
+            <a href="<?= site_url('mahasiswa/new') ?>" class="btn btn-primary">Add New</a>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($mahasiswa as $key => $value) : ?>
+                        <?php foreach (json_decode($mahasiswa) as $key => $value) : ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $value->nim ?></td>
