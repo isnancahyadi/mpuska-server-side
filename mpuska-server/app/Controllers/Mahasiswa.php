@@ -25,4 +25,14 @@ class Mahasiswa extends BaseController
         // $get = json_encode($response);
         return view('mahasiswa/index', (array)$response);
     }
+
+    public function add()
+    {
+        $url = site_url('restapi/mahasiswa');
+        $data = [];
+        $response['mahasiswa'] = akses_restapi('POST', $url, $data);
+        // echo json_encode($response);
+        // $get = json_encode($response);
+        return view('mahasiswa/new', (array)$response);
+    }
 }

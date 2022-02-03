@@ -9,7 +9,7 @@
     <div class="section-header">
         <h1>Mahasiswa</h1>
         <div class="section-header-button">
-            <a href="<?= site_url('mahasiswa/new') ?>" class="btn btn-primary">Add New</a>
+            <a href="<?= site_url('mahasiswa/add') ?>" class="btn btn-primary">Add New</a>
         </div>
     </div>
 
