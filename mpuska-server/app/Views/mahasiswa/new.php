@@ -44,28 +44,37 @@
                             <input type="text" name="nama_belakang" class="form-control" placeholder="Nama Belakang">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="gender" class="custom-control-input">
-                            <label class="custom-control-label">Laki-laki</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>Jenis Kelamin *</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="gender" class="custom-control-input <?= isset($errors['gender']) ? 'is-invalid' : null ?>">
+                                <label class="custom-control-label">Laki-laki</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="gender" class="custom-control-input <?= isset($errors['gender']) ? 'is-invalid' : null ?>">
+                                <label class="custom-control-label">Perempuan</label>
+                            </div>
+                            <div class="invalid-feedback">
+                                <?= isset($errors['gender']) ? $errors['gender'] : null ?>
+                            </div>
                         </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="gender" class="custom-control-input">
-                            <label class="custom-control-label">Perempuan</label>
+                        <div class="form-group col-md-9">
+                            <label>Tanggal Lahir *</label>
+                            <input type="date" name="tgl_lahir" value="<?= old('tgl_lahir') ?>" class="form-control <?= $validation->hasError('tgl_lahir') ? 'is-invalid' : null ?>">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('tgl_lahir') ?>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Tempat Lahir</label>
-                        <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" value="<?= old('tgl_lahir') ?>" class="form-control <?= $validation->hasError('tgl_lahir') ? 'is-invalid' : null ?>">
+                        <label>Tempat Lahir *</label>
+                        <input type="text" name="tempat_lahir" class="form-control <?= isset($errors['tempat_lahir']) ? 'is-invalid' : null ?>" placeholder="Tempat Lahir">
                         <div class="invalid-feedback">
-                            <?= $validation->getError('tgl_lahir') ?>
+                            <?= isset($errors['tempat_lahir']) ? $errors['tempat_lahir'] : null ?>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label>No. HP</label>
                         <input type="number" name="no_hp" class="form-control" placeholder="No. HP">
@@ -75,23 +84,35 @@
                         <input type="email" name="email" class="form-control" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="address" class="form-control" placeholder="Alamat"></textarea>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Kecamatan</label>
-                            <input type="text" name="kecamatan" class="form-control" placeholder="Kecamatan">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Kabupaten</label>
-                            <input type="text" name="kabupaten" class="form-control" placeholder="Kabupaten">
+                        <label>Alamat *</label>
+                        <input type="text" name="address" class="form-control <?= isset($errors['address']) ? 'is-invalid' : null ?>" placeholder="Alamat">
+                        <div class="invalid-feedback">
+                            <?= isset($errors['address']) ? $errors['address'] : null ?>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Provinsi</label>
-                            <input type="text" name="provinsi" class="form-control" placeholder="Provinsi">
+                            <label>Kecamatan *</label>
+                            <input type="text" name="kecamatan" class="form-control <?= isset($errors['kecamatan']) ? 'is-invalid' : null ?>" placeholder="Kecamatan">
+                            <div class="invalid-feedback">
+                                <?= isset($errors['kecamatan']) ? $errors['kecamatan'] : null ?>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Kabupaten *</label>
+                            <input type="text" name="kabupaten" class="form-control <?= isset($errors['kabupaten']) ? 'is-invalid' : null ?>" placeholder="Kabupaten">
+                            <div class="invalid-feedback">
+                                <?= isset($errors['kabupaten']) ? $errors['kabupaten'] : null ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Provinsi *</label>
+                            <input type="text" name="provinsi" class="form-control <?= isset($errors['provinsi']) ? 'is-invalid' : null ?>" placeholder="Provinsi">
+                            <div class="invalid-feedback">
+                                <?= isset($errors['provinsi']) ? $errors['provinsi'] : null ?>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Kode Pos</label>
