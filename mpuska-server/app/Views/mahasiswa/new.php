@@ -21,7 +21,7 @@
             <div class="card-body col-md-6">
                 <?php $validation = \Config\Services::validation() ?>
                 <?php $errors = session()->getFlashdata('errors') ?>
-                <form action="<?= site_url('mahasiswa/tampil') ?>" method="POST" autocomplete="off">
+                <form action="<?= site_url('mahasiswa/store') ?>" method="POST" autocomplete="off">
                     <?= csrf_field() ?>
                     <div class="form-group">
                         <label>No. Induk Mahasiswa *</label>
@@ -47,16 +47,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label>Jenis Kelamin *</label>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" name="gender" class="custom-control-input <?= isset($errors['gender']) ? 'is-invalid' : null ?>">
-                                <label class="custom-control-label">Laki-laki</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" value="1">
+                                <label class="form-check-label">
+                                    Laki-laki
+                                </label>
                             </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" name="gender" class="custom-control-input <?= isset($errors['gender']) ? 'is-invalid' : null ?>">
-                                <label class="custom-control-label">Perempuan</label>
-                            </div>
-                            <div class="invalid-feedback">
-                                <?= isset($errors['gender']) ? $errors['gender'] : null ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" value="0">
+                                <label class="form-check-label">
+                                    Perempuan
+                                </label>
                             </div>
                         </div>
                         <div class="form-group col-md-9">
@@ -85,9 +86,9 @@
                     </div>
                     <div class="form-group">
                         <label>Alamat *</label>
-                        <input type="text" name="address" class="form-control <?= isset($errors['address']) ? 'is-invalid' : null ?>" placeholder="Alamat">
+                        <input type="text" name="alamat" class="form-control <?= isset($errors['alamat']) ? 'is-invalid' : null ?>" placeholder="Alamat">
                         <div class="invalid-feedback">
-                            <?= isset($errors['address']) ? $errors['address'] : null ?>
+                            <?= isset($errors['alamat']) ? $errors['alamat'] : null ?>
                         </div>
                     </div>
                     <div class="form-row">
