@@ -8,7 +8,7 @@ class NamaMhsModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'ca_nama_mahasiswa';
-    // protected $primaryKey       = 'id';
+    protected $primaryKey       = 'nim';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';

@@ -91,10 +91,10 @@ class Mahasiswa extends ResourceController
                 if ($this->alamatMhs->affectedRows() > 0) {
                     return $this->respondCreated('Data berhasil tersimpan');
                 } else {
-                    return $this->fail($this->mhs->errors());
+                    return $this->fail($this->alamatMhs->errors());
                 }
             } else {
-                return $this->fail($this->mhs->errors());
+                return $this->fail($this->namaMhs->errors());
             }
         } else {
             return $this->fail($this->mhs->errors());
@@ -118,7 +118,79 @@ class Mahasiswa extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        // $dataMhs = [
+        //     'nim'           => $this->request->getVar('nim'),
+        //     'gender'        => $this->request->getVar('gender'),
+        //     'tempat_lahir'  => $this->request->getVar('tempat_lahir'),
+        //     'tgl_lahir'     => $this->request->getVar('tgl_lahir'),
+        //     'no_hp'         => $this->request->getVar('no_hp'),
+        //     'email'         => $this->request->getVar('email'),
+        //     'foto'          => $this->request->getVar('foto')
+        // ];
+
+        // $dataNamaMhs = [
+        //     'nim'           => $this->request->getVar('nim'),
+        //     'nama_depan'    => $this->request->getVar('nama_depan'),
+        //     'nama_tengah'   => $this->request->getVar('nama_tengah'),
+        //     'nama_belakang' => $this->request->getVar('nama_belakang')
+        // ];
+
+        // $dataAlamatMhs = [
+        //     'nim'       => $this->request->getVar('nim'),
+        //     'alamat'    => $this->request->getVar('alamat'),
+        //     'kecamatan' => $this->request->getVar('kecamatan'),
+        //     'kabupaten' => $this->request->getVar('kabupaten'),
+        //     'provinsi'  => $this->request->getVar('provinsi'),
+        //     'kode_pos'  => $this->request->getVar('kode_pos')
+        // ];
+
+        // $this->mhs->save($dataMhs);
+        // $this->namaMhs->save($dataNamaMhs);
+        // $this->alamatMhs->save($dataAlamatMhs);
+
+        // if ($this->mhs->affectedRows() > 0) {
+        //     if ($this->namaMhs->affectedRows() > 0) {
+        //         if ($this->alamatMhs->affectedRows() > 0) {
+        //             return $this->respondCreated('Data berhasil diupdate');
+        //         } else {
+        //             return $this->fail($this->alamatMhs->errors());
+        //         }
+        //     } else {
+        //         return $this->fail($this->namaMhs->errors());
+        //     }
+        // } else {
+        //     return $this->fail($this->mhs->errors());
+        // }
+
+        $data = $this->request->getRawInput();
+        $data['nim'] = $id;
+
+        $isExists = $this->mhs->where('nim', $id)->getAll();
+        if (!$isExists) {
+            return $this->failNotFound('Data tidak ditemukan untuk NIM ' . $id);
+        }
+
+        if ($this->mhs->update($id, $data)) {
+            if ($this->namaMhs->update($id, $data)) {
+                if ($this->alamatMhs->update($id, $data)) {
+                    $response = [
+                        'status'    => 200,
+                        'error'     => null,
+                        'messages'  => [
+                            'success' => 'Data mahasiswa dengan NIM ' . $id . ' berhasil diupdate'
+                        ]
+                    ];
+
+                    return $this->respond($response);
+                } else {
+                    return $this->fail($this->alamatMhs->errors());
+                }
+            } else {
+                return $this->fail($this->namaMhs->errors());
+            }
+        } else {
+            return $this->fail($this->mhs->errors());
+        }
     }
 
     /**

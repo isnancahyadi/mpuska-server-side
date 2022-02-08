@@ -50,6 +50,7 @@
                             <th>No. HP</th>
                             <th>Alamat</th>
                             <th>Email</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +65,16 @@
                                 <td><?= $value->no_hp ?></td>
                                 <td><?= $value->alamat . ", " . $value->kecamatan . ", " . $value->kabupaten . ", " . $value->provinsi . ", " . $value->kode_pos ?></td>
                                 <td><?= $value->email ?></td>
+                                <td class="text-center" style="width: 15%">
+                                    <a href="<?= site_url('mahasiswa/' . $value->nim . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <form action="<?= site_url('mahasiswa/' . $value->nim) ?>" method="POST" class="d-inline" id="del-<?= $value->nim ?>">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda yakin?" data-confirm-yes="submitDel(<?= $value->nim ?>)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

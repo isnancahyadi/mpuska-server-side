@@ -99,4 +99,10 @@ class Mahasiswa extends BaseController
 
         return redirect()->to(site_url('mahasiswa/tampil'))->with('success', 'Data Berhasil Disimpan');
     }
+
+    public function edit($id = null)
+    {
+        if ($id != null) {
+        }
+    }
 }
