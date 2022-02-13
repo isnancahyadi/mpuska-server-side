@@ -21,7 +21,7 @@
             <div class="card-body col-md-6">
                 <?php $validation = \Config\Services::validation() ?>
                 <?php foreach ($mahasiswa as $key => $value) : ?>
-                    <form action="<?= site_url('mahasiswa/update' . $value->nim) ?>" method="POST" autocomplete="off">
+                    <form action="<?= site_url('mahasiswa/update/' . $value->nim) ?>" method="POST" autocomplete="off">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
@@ -76,11 +76,11 @@
                                 <?= $validation->getError('tempat_lahir') ?>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group">
                             <label>No. HP</label>
                             <input type="number" name="no_hp" value="<?= old('no_hp', $value->no_hp) ?>" class="form-control" placeholder="No. HP">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group">
                             <label>Email</label>
                             <input type="email" name="email" value="<?= old('email', $value->email) ?>" class="form-control" placeholder="Email">
                         </div>
