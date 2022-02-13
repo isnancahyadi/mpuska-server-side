@@ -66,7 +66,7 @@
                                 <td><?= $value->alamat . ", " . $value->kecamatan . ", " . $value->kabupaten . ", " . $value->provinsi . ", " . $value->kode_pos ?></td>
                                 <td><?= $value->email ?></td>
                                 <td class="text-center" style="width: 15%">
-                                    <a href="<?= site_url('mahasiswa/' . $value->nim . '/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="<?= site_url('mahasiswa/edit/' . $value->nim) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <form action="<?= site_url('mahasiswa/' . $value->nim) ?>" method="POST" class="d-inline" id="del-<?= $value->nim ?>">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">

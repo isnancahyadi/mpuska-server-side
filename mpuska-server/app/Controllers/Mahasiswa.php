@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\MahasiswaModel;
 
 class Mahasiswa extends BaseController
 {
@@ -103,6 +104,20 @@ class Mahasiswa extends BaseController
     public function edit($id = null)
     {
         if ($id != null) {
+            $this->mhs = new MahasiswaModel();
+            $data['mahasiswa'] = $this->mhs->getSpecified($id);
+
+            if ($this->mhs->affectedRows() > 0) {
+                return view('mahasiswa/edit', $data);
+            } else {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+    }
+
+    public function update($id = null)
+    {
     }
 }

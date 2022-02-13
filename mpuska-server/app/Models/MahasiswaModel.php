@@ -61,4 +61,16 @@ class MahasiswaModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getSpecified($id)
+    {
+        $builder = $this->db->table('mahasiswa');
+        $builder->join('ca_nama_mahasiswa', 'ca_nama_mahasiswa.nim = mahasiswa.nim');
+        $builder->join('ca_alamat_mahasiswa', 'ca_alamat_mahasiswa.nim = mahasiswa.nim');
+        $builder->where('mahasiswa.nim', $id);
+
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }
