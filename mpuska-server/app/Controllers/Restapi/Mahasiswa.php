@@ -200,6 +200,13 @@ class Mahasiswa extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $data = $this->mhs->where('nim', $id)->findAll();
+        if ($data) {
+            $this->mhs->delete($id);
+
+            return $this->respondDeleted('Data berhasil dihapus');
+        } else {
+            return $this->failNotFound('Data tidak ditemukan');
+        }
     }
 }

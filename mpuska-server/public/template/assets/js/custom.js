@@ -6,3 +6,13 @@
  */
 
 "use strict";
+
+// datatables
+$(document).ready( function () {
+    $('#table1').DataTable();
+} );
+
+// modal confirmation
+function submitDel(id) {
+    $('#del-'+id).submit();
+}

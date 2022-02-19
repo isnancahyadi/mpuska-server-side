@@ -67,7 +67,7 @@
                                 <td><?= $value->email ?></td>
                                 <td class="text-center" style="width: 15%">
                                     <a href="<?= site_url('mahasiswa/edit/' . $value->nim) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                    <form action="<?= site_url('mahasiswa/' . $value->nim) ?>" method="POST" class="d-inline" id="del-<?= $value->nim ?>">
+                                    <form action="<?= site_url('mahasiswa/delete/' . $value->nim) ?>" method="POST" class="d-inline" id="del-<?= $value->nim ?>">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda yakin?" data-confirm-yes="submitDel(<?= $value->nim ?>)">

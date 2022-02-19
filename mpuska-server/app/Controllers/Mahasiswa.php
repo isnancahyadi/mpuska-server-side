@@ -178,6 +178,14 @@ class Mahasiswa extends BaseController
         $url = site_url('restapi/mahasiswa/' . $id);
         akses_restapi('PUT', $url, $data);
 
-        return redirect()->to(site_url('mahasiswa/tampil'))->with('success', 'Data Berhasil Disimpan');
+        return redirect()->to(site_url('mahasiswa/tampil'))->with('success', 'Data Berhasil Diupdate');
+    }
+
+    public function delete($id = null)
+    {
+        //$data = $this->request->getPost();
+        $url = site_url('restapi/mahasiswa/' . $id);
+        akses_restapi('DELETE', $url, $id);
+        return redirect()->to(site_url('mahasiswa/tampil'))->with('success', 'Data Berhasil Dihapus');
     }
 }
