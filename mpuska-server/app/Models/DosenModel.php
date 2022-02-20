@@ -51,4 +51,14 @@ class DosenModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    function getAll()
+    {
+        $builder = $this->db->table('dosen');
+        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy = dosen.niy');
+        $builder->join('ca_alamat_dosen', 'ca_alamat_dosen.niy = dosen.niy');
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

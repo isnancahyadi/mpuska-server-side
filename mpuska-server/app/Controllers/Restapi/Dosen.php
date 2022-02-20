@@ -22,7 +22,8 @@ class Dosen extends ResourceController
      */
     public function index()
     {
-        //
+        $data = $this->dos->getAll();
+        return $this->respond($data);
     }
 
     /**
