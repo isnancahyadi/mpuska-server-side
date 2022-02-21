@@ -8,7 +8,7 @@ class NamaDosModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'ca_nama_dosen';
-    // protected $primaryKey       = 'id';
+    protected $primaryKey       = 'niy';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';

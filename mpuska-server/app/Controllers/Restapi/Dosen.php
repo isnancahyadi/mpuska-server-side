@@ -90,10 +90,10 @@ class Dosen extends ResourceController
                 if ($this->alamatDos->affectedRows() > 0) {
                     return $this->respondCreated('Data berhasil tersimpan');
                 } else {
-                    return $this->fail($this->dos->errors());
+                    return $this->fail($this->alamatDos->errors());
                 }
             } else {
-                return $this->fail($this->dos->errors());
+                return $this->fail($this->namaDos->errors());
             }
         } else {
             return $this->fail($this->dos->errors());
@@ -117,7 +117,35 @@ class Dosen extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getRawInput();
+        $data['niy'] = $id;
+
+        $isExists = $this->dos->where('niy', $id)->getAll();
+        if (!$isExists) {
+            return $this->failNotFound('Data tidak ditemukan untuk NIY ' . $id);
+        }
+
+        if ($this->dos->update($id, $data)) {
+            if ($this->namaDos->update($id, $data)) {
+                if ($this->alamatDos->update($id, $data)) {
+                    $response = [
+                        'status'    => 200,
+                        'error'     => null,
+                        'messages'  => [
+                            'success' => 'Data dosen dengan NIY ' . $id . ' berhasil diupdate'
+                        ]
+                    ];
+
+                    return $this->respond($response);
+                } else {
+                    return $this->fail($this->alamatDos->errors());
+                }
+            } else {
+                return $this->fail($this->namaDos->errors());
+            }
+        } else {
+            return $this->fail($this->dos->errors());
+        }
     }
 
     /**

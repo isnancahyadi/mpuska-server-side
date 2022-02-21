@@ -8,7 +8,7 @@ class AlamatDosModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'ca_alamat_dosen';
-    // protected $primaryKey       = 'id';
+    protected $primaryKey       = 'niy';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';
