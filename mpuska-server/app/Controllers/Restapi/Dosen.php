@@ -155,6 +155,13 @@ class Dosen extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $data = $this->dos->where('niy', $id)->findAll();
+        if ($data) {
+            $this->dos->delete($id);
+
+            return $this->respondDeleted('Data berhasil dihapus');
+        } else {
+            return $this->failNotFound('Data tidak ditemukan');
+        }
     }
 }
