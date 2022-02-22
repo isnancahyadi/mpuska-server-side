@@ -61,4 +61,16 @@ class DosenModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getSpecified($id)
+    {
+        $builder = $this->db->table('dosen');
+        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy = dosen.niy');
+        $builder->join('ca_alamat_dosen', 'ca_alamat_dosen.niy = dosen.niy');
+        $builder->where('dosen.niy', $id);
+
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }
