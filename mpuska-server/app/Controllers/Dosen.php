@@ -180,4 +180,12 @@ class Dosen extends BaseController
 
         return redirect()->to(site_url('dosen/tampil'))->with('success', 'Data Berhasil Diupdate');
     }
+
+    public function delete($id = null)
+    {
+        //$data = $this->request->getPost();
+        $url = site_url('restapi/dosen/' . $id);
+        akses_restapi('DELETE', $url, $id);
+        return redirect()->to(site_url('dosen/tampil'))->with('success', 'Data Berhasil Dihapus');
+    }
 }
