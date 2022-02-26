@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2022 at 07:16 AM
+-- Generation Time: Feb 26, 2022 at 05:48 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -33,6 +33,14 @@ CREATE TABLE `akun` (
   `password` varchar(125) NOT NULL,
   `hak_akses` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`ID_akun`, `username`, `password`, `hak_akses`) VALUES
+(25, '1700018161', '$2y$10$zdNAp6zDPFjFW4Bf3t.YMujGiXD7ibMRotCYeEC3qWbHjXQI.t47G', '2'),
+(26, '12345', '$2y$10$Qrjk7QZ05pMeKkgGZDfmv.n3kALdtoVefPnB/6IG.ZYJMCejHIgva', '1');
 
 --
 -- Triggers `akun`
@@ -76,6 +84,15 @@ CREATE TABLE `ca_alamat_dosen` (
   `kode_pos` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `ca_alamat_dosen`
+--
+
+INSERT INTO `ca_alamat_dosen` (`niy`, `alamat`, `kecamatan`, `kabupaten`, `provinsi`, `kode_pos`) VALUES
+('12345', 'Dusun Krajan 1 RT06 RW02', 'Lemahabang', 'Karawang', 'Jawa Barat', '41383'),
+('67890', 'Kertopaten', 'Srimulyo', 'Bantul', 'D.I. Yogyakarta', '12345'),
+('54321', 'Kradenan', 'Imogiri', 'Bantul', 'D.I. Yogyakarta', '56789');
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +108,14 @@ CREATE TABLE `ca_alamat_mahasiswa` (
   `kode_pos` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `ca_alamat_mahasiswa`
+--
+
+INSERT INTO `ca_alamat_mahasiswa` (`nim`, `alamat`, `kecamatan`, `kabupaten`, `provinsi`, `kode_pos`) VALUES
+('1700018161', 'Dusun Kradenan, Desa Sitimulyo', 'Piyungan', 'Bantul', 'DI Yogyakarta', '55792'),
+('1800018001', 'Jl. Solo', 'Sleman', 'Sleman', 'D.I. Yogyakarta', '56987');
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +129,15 @@ CREATE TABLE `ca_nama_dosen` (
   `nama_belakang` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `ca_nama_dosen`
+--
+
+INSERT INTO `ca_nama_dosen` (`niy`, `nama_depan`, `nama_tengah`, `nama_belakang`) VALUES
+('12345', 'Isnan', 'Arif', 'Cahyadi'),
+('67890', 'Fulani', 'Fulina', ''),
+('54321', 'Dini', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +150,14 @@ CREATE TABLE `ca_nama_mahasiswa` (
   `nama_tengah` varchar(50) DEFAULT NULL,
   `nama_belakang` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ca_nama_mahasiswa`
+--
+
+INSERT INTO `ca_nama_mahasiswa` (`nim`, `nama_depan`, `nama_tengah`, `nama_belakang`) VALUES
+('1700018161', 'Isnan', 'Arif', 'Cahyadi'),
+('1800018001', 'Fulana', 'F', '');
 
 -- --------------------------------------------------------
 
@@ -157,17 +199,21 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `dosen`
+--
+
+INSERT INTO `dosen` (`niy`, `gender`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `email`, `foto`, `ID_akun`) VALUES
+('12345', '1', 'Karawang', '1990-05-22', '082111336643', 'isnan@tif.uad.ac.id', NULL, 26),
+('54321', '0', 'Wates', '1990-11-14', '082122223333', 'dini@tif.uad.ac.id', NULL, NULL),
+('67890', '0', 'Klaten', '1990-03-07', '082111112222', 'fulani@tif.uad.ac.id', NULL, NULL);
+
+--
 -- Triggers `dosen`
 --
 DELIMITER $$
-CREATE TRIGGER `delete_data_alamat_dosen` BEFORE DELETE ON `dosen` FOR EACH ROW BEGIN
-	DELETE ca_alamat_dosen FROM dosen JOIN ca_alamat_dosen ON dosen.niy = ca_alamat_dosen.niy WHERE dosen.niy = old.niy;
-    END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `delete_data_nama_dosen` BEFORE DELETE ON `dosen` FOR EACH ROW BEGIN
+CREATE TRIGGER `delete_data_dosen` BEFORE DELETE ON `dosen` FOR EACH ROW BEGIN
 	DELETE ca_nama_dosen FROM dosen JOIN ca_nama_dosen ON dosen.niy = ca_nama_dosen.niy WHERE dosen.niy = old.niy;
+    DELETE ca_alamat_dosen FROM dosen JOIN ca_alamat_dosen ON dosen.niy = ca_alamat_dosen.niy WHERE dosen.niy = old.niy;
     END
 $$
 DELIMITER ;
@@ -216,17 +262,26 @@ CREATE TABLE `mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`nim`, `gender`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `email`, `foto`, `ID_akun`) VALUES
+('1700018161', '1', 'Klaten', '1999-05-22', '082111336643', 'isnan1700018161@webmail.uad.ac.id', NULL, 25),
+('1800018001', '1', 'Karawang', '2000-04-13', '082155556666', 'fulana18000180001@webmail.uad.ac.id', NULL, NULL);
+
+--
 -- Triggers `mahasiswa`
 --
 DELIMITER $$
-CREATE TRIGGER `delete_data_alamat_mahasiswa` BEFORE DELETE ON `mahasiswa` FOR EACH ROW BEGIN
-	DELETE ca_alamat_mahasiswa FROM mahasiswa JOIN ca_alamat_mahasiswa ON mahasiswa.nim = ca_alamat_mahasiswa.nim WHERE mahasiswa.nim = old.nim;
+CREATE TRIGGER `delete_data_akun_mahasiswa` BEFORE DELETE ON `mahasiswa` FOR EACH ROW BEGIN
+	DELETE akun FROM akun JOIN mahasiswa ON akun.ID_akun = mahasiswa.ID_akun WHERE akun.ID_akun = old.ID_akun;
     END
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `delete_data_nama_mahasiswa` BEFORE DELETE ON `mahasiswa` FOR EACH ROW BEGIN
+CREATE TRIGGER `delete_data_mahasiswa` BEFORE DELETE ON `mahasiswa` FOR EACH ROW BEGIN
 	DELETE ca_nama_mahasiswa FROM mahasiswa JOIN ca_nama_mahasiswa ON mahasiswa.nim = ca_nama_mahasiswa.nim WHERE mahasiswa.nim = old.nim;
+    DELETE ca_alamat_mahasiswa FROM mahasiswa JOIN ca_alamat_mahasiswa ON mahasiswa.nim = ca_alamat_mahasiswa.nim WHERE mahasiswa.nim = old.nim;
     END
 $$
 DELIMITER ;
@@ -244,6 +299,13 @@ CREATE TABLE `matakuliah` (
   `sks` int(2) NOT NULL,
   `prodi` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `matakuliah`
+--
+
+INSERT INTO `matakuliah` (`kode_matkul`, `nama`, `semester`, `sks`, `prodi`) VALUES
+('12345', 'Logika Informatika', '2', 3, 'Teknik Informatika');
 
 -- --------------------------------------------------------
 
@@ -378,7 +440,7 @@ ALTER TABLE `pengampu`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `ID_akun` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID_akun` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `asesmen`
@@ -439,6 +501,12 @@ ALTER TABLE `cpmk`
   ADD CONSTRAINT `cpmk_ibfk_1` FOREIGN KEY (`ID_pencapaian`) REFERENCES `pencapaian` (`ID_pencapaian`);
 
 --
+-- Constraints for table `dosen`
+--
+ALTER TABLE `dosen`
+  ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`ID_akun`) REFERENCES `akun` (`ID_akun`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `khs`
 --
 ALTER TABLE `khs`
@@ -451,6 +519,12 @@ ALTER TABLE `khs`
 ALTER TABLE `krs`
   ADD CONSTRAINT `krs_ibfk_1` FOREIGN KEY (`kode_matkul`) REFERENCES `matakuliah` (`kode_matkul`),
   ADD CONSTRAINT `krs_ibfk_2` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`);
+
+--
+-- Constraints for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`ID_akun`) REFERENCES `akun` (`ID_akun`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pencapaian`
