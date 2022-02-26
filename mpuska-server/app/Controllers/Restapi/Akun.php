@@ -3,6 +3,8 @@
 namespace App\Controllers\Restapi;
 
 use App\Models\AkunModel;
+use App\Models\DosenModel;
+use App\Models\MahasiswaModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class Akun extends ResourceController
@@ -11,6 +13,8 @@ class Akun extends ResourceController
     {
         $this->db   = \Config\Database::connect();
         $this->akun = new AkunModel();
+        $this->mhs  = new MahasiswaModel();
+        $this->dos  = new DosenModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -51,33 +55,46 @@ class Akun extends ResourceController
     {
         $post = $this->request->getPost();
 
-        $mhs = $this->db->table('mahasiswa');
-        $searchMhs = $mhs->getWhere(['nim' => $post['username']])->getRow();
-        $dosen = $this->db->table('dosen');
-        $searchDos = $dosen->getWhere(['niy' => $post['username']])->getRow();
+        // $mhs = $this->db->table('mahasiswa');
+        // $searchMhs = $mhs->getWhere(['nim' => $post['username']])->getRow();
+        // $dosen = $this->db->table('dosen');
+        // $searchDos = $dosen->getWhere(['niy' => $post['username']])->getRow();
 
-        $hakAkses = "";
-
-        if ($searchMhs) {
-            $hakAkses = '2';
-        } elseif ($searchDos) {
-            $hakAkses = '1';
+        if ($post['username'] == null) {
+            $response = [
+                'status' => 404,
+                'message'   => [
+                    'error' => 'Username tidak boleh kosong'
+                ]
+            ];
+            return $this->respond($response);
         } else {
-            return $this->failNotFound('User tidak ditemukan');
-        }
+            $searchMhs = $this->mhs->getSpecified($post['username']);
+            $searchDos = $this->dos->getSpecified($post['username']);
 
-        $data = [
-            'username'  => $post['username'],
-            'password'  => password_hash($post['password'], PASSWORD_DEFAULT),
-            'hak_akses' => $hakAkses
-        ];
+            $hakAkses = "";
 
-        $this->akun->insert($data);
+            if ($searchMhs) {
+                $hakAkses = '2';
+            } elseif ($searchDos) {
+                $hakAkses = '1';
+            } else {
+                return $this->failNotFound('User tidak ditemukan');
+            }
 
-        if ($this->akun->affectedRows() > 0) {
-            return $this->respondCreated('Akun berhasil dibuat');
-        } else {
-            return $this->fail($this->akun->errors());
+            $data = [
+                'username'  => $post['username'],
+                'password'  => password_hash($post['password'], PASSWORD_DEFAULT),
+                'hak_akses' => $hakAkses
+            ];
+
+            $this->akun->insert($data);
+
+            if ($this->akun->affectedRows() > 0) {
+                return $this->respondCreated('Akun berhasil dibuat');
+            } else {
+                return $this->fail($this->akun->errors());
+            }
         }
     }
 
