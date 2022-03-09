@@ -61,13 +61,9 @@ class Akun extends ResourceController
         // $searchDos = $dosen->getWhere(['niy' => $post['username']])->getRow();
 
         if ($post['username'] == null) {
-            $response = [
-                'status' => 404,
-                'message'   => [
-                    'error' => 'Username tidak boleh kosong'
-                ]
-            ];
-            return $this->respond($response);
+            return $this->fail('Username tidak boleh kosong');
+        } elseif ($this->akun->find($post['username'])) {
+            return $this->failResourceExists('User telah tersedia');
         } else {
             $searchMhs = $this->mhs->getSpecified($post['username']);
             $searchDos = $this->dos->getSpecified($post['username']);

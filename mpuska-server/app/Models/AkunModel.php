@@ -8,7 +8,7 @@ class AkunModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'akun';
-    protected $primaryKey       = 'ID_akun';
+    protected $primaryKey       = 'username';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';
