@@ -45,5 +45,6 @@ class Auth extends BaseController
     public function logoutProcess()
     {
         session()->remove('ID_akun');
+        return $this->respondDeleted('Berhasil logout');
     }
 }
