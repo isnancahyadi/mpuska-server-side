@@ -129,15 +129,7 @@ class Dosen extends ResourceController
         if ($this->dos->update($id, $data)) {
             if ($this->namaDos->update($id, $data)) {
                 if ($this->alamatDos->update($id, $data)) {
-                    $response = [
-                        'status'    => 200,
-                        'error'     => null,
-                        'messages'  => [
-                            'success' => 'Data dosen dengan NIY ' . $id . ' berhasil diupdate'
-                        ]
-                    ];
-
-                    return $this->respond($response);
+                    return $this->respondCreated('Data berhasil diupdate');
                 } else {
                     return $this->fail($this->alamatDos->errors());
                 }
