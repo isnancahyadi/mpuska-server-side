@@ -33,7 +33,8 @@ class Dosen extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $data = $this->dos->getSpecified($id);
+        return $this->respond($data);
     }
 
     /**
