@@ -25,7 +25,7 @@ class AkunModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'username'  => 'required|is_unique[akun.username]',
+        'username'  => 'required|is_unique[akun.username,username,{username}]',
         'password'  => 'required'
     ];
     protected $validationMessages   = [
@@ -48,4 +48,12 @@ class AkunModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    function getAll()
+    {
+        $builder = $this->db->table('akun');
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }

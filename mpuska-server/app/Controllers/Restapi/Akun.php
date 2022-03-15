@@ -111,7 +111,22 @@ class Akun extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $input = $this->request->getRawInput();
+        $data = [
+            'username' => $id,
+            'password' => password_hash($input['confirm_password'], PASSWORD_DEFAULT)
+        ];
+
+        $isExists = $this->akun->where('username', $id)->getAll();
+        if (!$isExists) {
+            return $this->failNotFound('Data tidak ditemukan untuk username ' . $id);
+        }
+
+        if ($this->akun->update($id, $data)) {
+            return $this->respondCreated('Data berhasil diupdate');
+        } else {
+            return $this->fail($this->akun->errors());
+        }
     }
 
     /**
