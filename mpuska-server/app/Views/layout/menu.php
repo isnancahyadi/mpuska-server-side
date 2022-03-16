@@ -14,7 +14,7 @@
 </li>
 <li class="menu-header">MBKM</li>
 <li><a href="#" class="nav-link"><i class="fas fa-user-edit"></i><span>Pendaftaran</span></a></li>
-<li><a class="nav-link" href="#"><i class="fas fa-book-open"></i><span>Matakuliah</span></a></li>
+<li><a class="nav-link" href="<?= site_url('matakuliah/tampil') ?>"><i class="fas fa-book-open"></i><span>Matakuliah</span></a></li>
 <!-- <li class="nav-item dropdown">
     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Components</span></a>
     <ul class="dropdown-menu">
