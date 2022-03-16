@@ -18,7 +18,8 @@ class Matakuliah extends ResourceController
      */
     public function index()
     {
-        //
+        $data = $this->matkul->getAll();
+        return $this->respond($data);
     }
 
     /**

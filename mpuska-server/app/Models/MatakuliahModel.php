@@ -51,4 +51,12 @@ class MatakuliahModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    function getAll()
+    {
+        $builder = $this->db->table('matakuliah');
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }
