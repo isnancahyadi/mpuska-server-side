@@ -24,4 +24,9 @@ class Matakuliah extends BaseController
 
         return view('matakuliah/index', (array)$response);
     }
+
+    public function add()
+    {
+        return view('matakuliah/new');
+    }
 }
