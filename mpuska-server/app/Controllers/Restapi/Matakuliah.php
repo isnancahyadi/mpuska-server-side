@@ -77,7 +77,19 @@ class Matakuliah extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getRawInput();
+        $data['kode_matkul'] = $id;
+
+        $isExists = $this->matkul->where('kode_matkul', $id)->getAll();
+        if (!$isExists) {
+            return $this->failNotFound('Data tidak ditemukan untuk kode matakuliah ' . $id);
+        }
+
+        if ($this->matkul->update($id, $data)) {
+            return $this->respondCreated('Data berhasil diupdate');
+        } else {
+            return $this->fail($this->matkul->errors());
+        }
     }
 
     /**
