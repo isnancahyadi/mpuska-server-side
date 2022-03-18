@@ -92,4 +92,50 @@ class Matakuliah extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
+
+    public function update($id = null)
+    {
+        $validate = $this->validate([
+            'kode_matkul' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kode matakuliah tidak boleh kosong'
+                ],
+            ],
+            'nama' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama matakuliah tidak boleh kosong'
+                ],
+            ],
+            'semester' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Semester tidak boleh kosong'
+                ],
+            ],
+            'sks' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'SKS tidak boleh kosong'
+                ],
+            ],
+            'prodi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Program studi tidak boleh kosong'
+                ],
+            ],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
+
+        $data = $this->request->getPost();
+        $url = site_url('restapi/matakuliah/' . $id);
+        akses_restapi('PUT', $url, $data);
+
+        return redirect()->to(site_url('matakuliah/tampil'))->with('success', 'Data Berhasil Diupdate');
+    }
 }
