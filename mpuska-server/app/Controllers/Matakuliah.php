@@ -138,4 +138,11 @@ class Matakuliah extends BaseController
 
         return redirect()->to(site_url('matakuliah/tampil'))->with('success', 'Data Berhasil Diupdate');
     }
+
+    public function delete($id = null)
+    {
+        $url = site_url('restapi/matakuliah/' . $id);
+        akses_restapi('DELETE', $url, $id);
+        return redirect()->to(site_url('matakuliah/tampil'))->with('success', 'Data Berhasil Dihapus');
+    }
 }
