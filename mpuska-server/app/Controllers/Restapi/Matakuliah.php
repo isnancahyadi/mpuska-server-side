@@ -99,6 +99,12 @@ class Matakuliah extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $data = $this->matkul->where('kode_matkul', $id)->findAll();
+        if ($data) {
+            $this->matkul->delete($id);
+            return $this->respondDeleted('Data berhasil dihapus');
+        } else {
+            return $this->failNotFound('Data tidak ditemukan');
+        }
     }
 }
