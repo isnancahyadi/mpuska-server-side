@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\MatakuliahModel;
 
 class Matakuliah extends BaseController
 {
@@ -74,5 +75,21 @@ class Matakuliah extends BaseController
         akses_restapi('POST', $url, $data);
 
         return redirect()->to(site_url('matakuliah/tampil'))->with('success', 'Data Berhasil Disimpan');
+    }
+
+    public function edit($id = null)
+    {
+        if ($id != null) {
+            $this->matkul = new MatakuliahModel();
+            $data['matkul'] = $this->matkul->getSpecified($id);
+
+            if ($this->matkul->affectedRows() > 0) {
+                return view('matakuliah/edit', $data);
+            } else {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 }

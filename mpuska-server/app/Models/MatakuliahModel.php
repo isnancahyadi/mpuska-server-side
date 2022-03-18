@@ -59,4 +59,14 @@ class MatakuliahModel extends Model
 
         return $query->getResult();
     }
+
+    function getSpecified($id)
+    {
+        $builder = $this->db->table('matakuliah');
+        $builder->where('kode_matkul', $id);
+
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }
