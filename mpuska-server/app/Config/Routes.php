@@ -39,6 +39,7 @@ $routes->resource('restapi/akun');
 $routes->resource('restapi/mahasiswa');
 $routes->resource('restapi/dosen');
 $routes->resource('restapi/matakuliah');
+$routes->resource('restapi/pengampu');
 
 /*
  * --------------------------------------------------------------------
