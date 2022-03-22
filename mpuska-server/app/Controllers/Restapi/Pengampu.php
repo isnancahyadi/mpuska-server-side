@@ -19,7 +19,7 @@ class Pengampu extends ResourceController
      */
     public function index()
     {
-        $data = $this->pengampu->getAll();
+        $data = $this->pengampu->getDataPengampu();
         return $this->respond($data);
     }
 
