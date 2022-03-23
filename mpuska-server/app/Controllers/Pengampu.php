@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\DosenModel;
 use App\Models\MatakuliahModel;
+use App\Models\PengampuModel;
 
 class Pengampu extends BaseController
 {
@@ -76,5 +77,23 @@ class Pengampu extends BaseController
         akses_restapi('POST', $url, $data);
 
         return redirect()->to(site_url('pengampu/tampil'))->with('success', 'Data Berhasil Disimpan');
+    }
+
+    public function edit($id = null)
+    {
+        if ($id != null) {
+            $this->pengampu = new PengampuModel();
+            $data['dosen'] = $this->dosen->getAll();
+            $data['matkul'] = $this->matkul->getAll();
+            $data['pengampu'] = $this->pengampu->getSpecified($id);
+
+            if ($this->pengampu->affectedRows() > 0) {
+                return view('pengampu/edit', $data);
+            } else {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 }

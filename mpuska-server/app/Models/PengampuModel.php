@@ -71,4 +71,16 @@ class PengampuModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getSpecified($id)
+    {
+        $builder = $this->db->table('pengampu');
+        $builder->join('dosen', 'dosen.niy = pengampu.niy');
+        $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
+        $builder->where('pengampu.ID_pengampu', $id);
+
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }
