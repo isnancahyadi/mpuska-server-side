@@ -78,7 +78,19 @@ class Pengampu extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getRawInput();
+        $data['ID_pengampu'] = $id;
+
+        $isExists = $this->pengampu->where('ID_pengampu', $id)->getAll();
+        if (!$isExists) {
+            return $this->failNotFound('Data tidak ditemukan untuk kode ID pengampu ' . $id);
+        }
+
+        if ($this->pengampu->update($id, $data)) {
+            return $this->respondCreated('Data berhasil diupdate');
+        } else {
+            return $this->fail($this->pengampu->errors());
+        }
     }
 
     /**
