@@ -37,4 +37,44 @@ class Pengampu extends BaseController
 
         return view('pengampu/new', $data);
     }
+
+    public function store()
+    {
+        $validate = $this->validate([
+            'niy' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'NIY tidak boleh kosong'
+                ],
+            ],
+            'kode_matkul' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kode matakuliah tidak boleh kosong'
+                ],
+            ],
+            'kelas' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kelas tidak boleh kosong'
+                ],
+            ],
+            'thn_ajaran' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tahun ajaran tidak boleh kosong'
+                ],
+            ],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
+
+        $data = $this->request->getPost();
+        $url = site_url('restapi/pengampu');
+        akses_restapi('POST', $url, $data);
+
+        return redirect()->to(site_url('pengampu/tampil'))->with('success', 'Data Berhasil Disimpan');
+    }
 }
