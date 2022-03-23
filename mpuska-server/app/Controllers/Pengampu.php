@@ -3,12 +3,17 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DosenModel;
+use App\Models\MatakuliahModel;
 
 class Pengampu extends BaseController
 {
     function __construct()
     {
         helper(['restclient']);
+
+        $this->dosen = new DosenModel();
+        $this->matkul = new MatakuliahModel();
     }
 
     public function index()
@@ -23,5 +28,13 @@ class Pengampu extends BaseController
         $response['pengampu'] = akses_restapi('GET', $url, $data);
 
         return view('pengampu/index', (array)$response);
+    }
+
+    public function add()
+    {
+        $data['dosen'] = $this->dosen->getAll();
+        $data['matkul'] = $this->matkul->getAll();
+
+        return view('pengampu/new', $data);
     }
 }
