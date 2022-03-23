@@ -50,7 +50,15 @@ class Pengampu extends ResourceController
      */
     public function create()
     {
-        //
+        $data = $this->request->getPost();
+
+        $this->pengampu->insert($data);
+
+        if ($this->pengampu->affectedRows() > 0) {
+            return $this->respondCreated('Data berhasil disimpan');
+        } else {
+            return $this->fail($this->pengampu->errors());
+        }
     }
 
     /**
