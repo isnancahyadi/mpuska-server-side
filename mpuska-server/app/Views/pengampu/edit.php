@@ -29,7 +29,7 @@
                             <select name="kode_matkul" class="form-control <?= isset($errors['kode_matkul']) ? 'is-invalid' : null ?>">
                                 <option value="" hidden></option>
                                 <?php foreach ($matkul as $key => $mk) : ?>
-                                    <option value="<?= $mk->kode_matkul ?>" <?= old('kode_matkul', $mk->kode_matkul) == $mk->kode_matkul ? 'selected' : null ?>>
+                                    <option value="<?= $mk->kode_matkul ?>" <?= old('kode_matkul', $value->kode_matkul) == $mk->kode_matkul ? 'selected' : null ?>>
                                         <?= $mk->nama ?>
                                     </option>
                                 <?php endforeach ?>
@@ -43,7 +43,7 @@
                             <select name="niy" class="form-control <?= isset($errors['niy']) ? 'is-invalid' : null ?>">
                                 <option value="" hidden></option>
                                 <?php foreach ($dosen as $key => $dos) : ?>
-                                    <option value="<?= $dos->niy ?>" <?= old('niy', $dos->niy) == $dos->niy ? 'selected' : null ?>>
+                                    <option value="<?= $dos->niy ?>" <?= old('niy', $value->niy) == $dos->niy ? 'selected' : null ?>>
                                         <?= $dos->nama_depan . " " . $dos->nama_tengah . " " . $dos->nama_belakang ?>
                                     </option>
                                 <?php endforeach ?>

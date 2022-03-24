@@ -96,4 +96,44 @@ class Pengampu extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
+
+    public function update($id = null)
+    {
+        $validate = $this->validate([
+            'kode_matkul' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kode matakuliah tidak boleh kosong'
+                ],
+            ],
+            'niy' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'NIY tidak boleh kosong'
+                ],
+            ],
+            'kelas' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kelas tidak boleh kosong'
+                ],
+            ],
+            'thn_ajaran' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tahun ajaran tidak boleh kosong'
+                ],
+            ],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
+
+        $data = $this->request->getPost();
+        $url = site_url('restapi/pengampu/' . $id);
+        akses_restapi('PUT', $url, $data);
+
+        return redirect()->to(site_url('pengampu/tampil'))->with('success', 'Data Berhasil Diupdate');
+    }
 }
