@@ -100,6 +100,12 @@ class Pengampu extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $data = $this->pengampu->where('ID_pengampu', $id)->findAll();
+        if ($data) {
+            $this->pengampu->delete($id);
+            return $this->respondDeleted('Data berhasil dihapus');
+        } else {
+            return $this->failNotFound('Data tidak ditemukan');
+        }
     }
 }
