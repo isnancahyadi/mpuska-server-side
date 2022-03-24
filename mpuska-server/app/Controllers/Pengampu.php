@@ -136,4 +136,11 @@ class Pengampu extends BaseController
 
         return redirect()->to(site_url('pengampu/tampil'))->with('success', 'Data Berhasil Diupdate');
     }
+
+    public function delete($id = null)
+    {
+        $url = site_url('restapi/pengampu/' . $id);
+        akses_restapi('DELETE', $url, $id);
+        return redirect()->to(site_url('pengampu/tampil'))->with('success', 'Data Berhasil Dihapus');
+    }
 }
