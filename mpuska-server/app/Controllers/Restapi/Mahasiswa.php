@@ -44,7 +44,7 @@ class Mahasiswa extends ResourceController
      */
     public function new()
     {
-        return view('mahasiswa/new');
+        //
     }
 
     /**

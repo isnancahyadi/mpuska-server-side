@@ -82,7 +82,10 @@
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email">
+                        <input type="email" name="email" class="form-control <?= isset($errors['email']) ? 'is-invalid' : null ?>" placeholder="Email">
+                        <div class="invalid-feedback">
+                            <?= isset($errors['email']) ? $errors['email'] : null ?>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Alamat *</label>

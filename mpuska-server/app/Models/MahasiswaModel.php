@@ -29,14 +29,17 @@ class MahasiswaModel extends Model
         'gender'        => 'required',
         'tempat_lahir'  => 'required',
         'tgl_lahir'     => 'required',
-        'email'         => 'valid_email'
+        'email'         => 'required|valid_email'
     ];
     protected $validationMessages   = [
         'nim'           => ['required' => 'NIM harus diisi'],
         'gender'        => ['required' => 'Jenis kelamin harus diisi'],
         'tempat_lahir'  => ['required' => 'Tempat lahir harus diisi'],
         'tgl_lahir'     => ['required' => 'Tanggal lahir harus diisi'],
-        'email'         => ['valid_email' => 'Email tidak valid']
+        'email'         => [
+            'required'      => 'Email harus diisi',
+            'valid_email'   => 'Email tidak valid'
+        ]
     ];
     // protected $skipValidation       = false;
     // protected $cleanValidationRules = true;
