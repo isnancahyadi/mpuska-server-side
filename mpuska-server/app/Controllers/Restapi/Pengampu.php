@@ -30,7 +30,8 @@ class Pengampu extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $data = $this->pengampu->getSpecifiedDataPengampu($id);
+        return $this->respond($data);
     }
 
     /**
