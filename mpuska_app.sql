@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2022 at 06:21 AM
+-- Generation Time: Mar 28, 2022 at 03:45 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -33,6 +33,13 @@ CREATE TABLE `akun` (
   `password` varchar(125) NOT NULL,
   `hak_akses` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`ID_akun`, `username`, `password`, `hak_akses`) VALUES
+(31, '67890', '$2y$10$r.2QGQx1ZuVKnw0Snd.a/.AwzSXNyOWv7A5cJ72cTFk7B30yT7fve', '1');
 
 --
 -- Triggers `akun`
@@ -93,7 +100,11 @@ CREATE TABLE `ca_alamat_dosen` (
 --
 
 INSERT INTO `ca_alamat_dosen` (`niy`, `alamat`, `kecamatan`, `kabupaten`, `provinsi`, `kode_pos`) VALUES
-('67890', 'Kertopaten', 'Srimulyo', 'Bantul', 'D.I. Yogyakarta', '12345');
+('67890', 'Kertopaten', 'Srimulyo', 'Bantul', 'D.I. Yogyakarta', '12345'),
+('60090586', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', '11111'),
+('60181172', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', '11111'),
+('60160951', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', '11111'),
+('60160960', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', 'Yogyakarta', '11111');
 
 -- --------------------------------------------------------
 
@@ -115,8 +126,8 @@ CREATE TABLE `ca_alamat_mahasiswa` (
 --
 
 INSERT INTO `ca_alamat_mahasiswa` (`nim`, `alamat`, `kecamatan`, `kabupaten`, `provinsi`, `kode_pos`) VALUES
-('1700018161', 'Dusun Kradenan, Desa Sitimulyo', 'Piyungan', 'Bantul', 'DI Yogyakarta', '55792'),
-('1800018001', 'Jl. Solo', 'Sleman', 'Sleman', 'D.I. Yogyakarta', '56987');
+('1700018161', 'Karawang', 'Karawang', 'Karawang', 'Karawang', '41383'),
+('1800018001', 'ykyk', 'ykyk', 'ykyk', 'ykyk', '11111');
 
 -- --------------------------------------------------------
 
@@ -136,7 +147,11 @@ CREATE TABLE `ca_nama_dosen` (
 --
 
 INSERT INTO `ca_nama_dosen` (`niy`, `nama_depan`, `nama_tengah`, `nama_belakang`) VALUES
-('67890', 'Fulani', 'Fulina', '');
+('67890', 'Fulani', '', 'Nini'),
+('60090586', 'Arfiani', 'Nur', 'Khusna, S.T., M.Kom.'),
+('60181172', 'Guntur', 'Maulana', 'Zamroni, B.Sc., M.Kom.'),
+('60160951', 'Ika', '', 'Arfiani, S.T., M.Cs.'),
+('60160960', 'Murein', 'Miksa', 'Mardhia, S.T., M.T.');
 
 -- --------------------------------------------------------
 
@@ -157,7 +172,7 @@ CREATE TABLE `ca_nama_mahasiswa` (
 
 INSERT INTO `ca_nama_mahasiswa` (`nim`, `nama_depan`, `nama_tengah`, `nama_belakang`) VALUES
 ('1700018161', 'Isnan', 'Arif', 'Cahyadi'),
-('1800018001', 'Fulana', 'F', '');
+('1800018001', 'asas', NULL, 'qwqw');
 
 -- --------------------------------------------------------
 
@@ -203,7 +218,11 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`niy`, `gender`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `email`, `foto`, `ID_akun`) VALUES
-('67890', '0', 'Klaten', '1990-03-07', '082111112222', 'fulani@tif.uad.ac.id', NULL, NULL);
+('60090586', '0', 'Yogyakarta', '1988-01-01', '', 'arfiani.khusna@tif.uad.ac.id', NULL, NULL),
+('60160951', '0', 'Yogyakarta', '1988-01-01', '', 'ika.arfiani@tif.uad.ac.id', NULL, NULL),
+('60160960', '0', 'Yogyakarta', '1988-01-01', '', 'murein.miksa@tif.uad.ac.id', NULL, NULL),
+('60181172', '1', 'Yogyakarta', '1988-01-01', '', 'guntur.zamroni@tif.uad.ac.id', NULL, NULL),
+('67890', '0', 'Klaten', '1990-03-07', '082111112222', 'fulani@tif.uad.ac.id', NULL, 31);
 
 --
 -- Triggers `dosen`
@@ -270,8 +289,8 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`nim`, `gender`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `email`, `foto`, `ID_akun`) VALUES
-('1700018161', '1', 'Klaten', '1999-05-22', '082111336643', 'isnan1700018161@webmail.uad.ac.id', NULL, NULL),
-('1800018001', '1', 'Karawang', '2000-04-13', '082155556666', 'fulana18000180001@webmail.uad.ac.id', NULL, NULL);
+('1700018161', '1', 'Karawang', '1999-05-22', '082111336643', 'isnan1700018161@webmail.uad.ac.id', NULL, NULL),
+('1800018001', '1', 'ykyk', '2000-01-01', NULL, 'asas@gmail.com', NULL, NULL);
 
 --
 -- Triggers `mahasiswa`
@@ -309,7 +328,31 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`kode_matkul`, `nama`, `semester`, `sks`, `prodi`) VALUES
-('12345', 'Logika Informatika', '2', 3, 'Teknik Informatika');
+('1970530', 'Analisis Perancangan Perusahaan', '7', 3, 'Teknik Industri'),
+('1975930', 'Manajemen Teknologi', '6', 3, 'Teknik Industri'),
+('211810630', 'Manajemen Data dan Informasi', '1', 3, 'Informatika'),
+('211820430', 'Arsitektur Komputer', '2', 3, 'Informatika'),
+('211830531', 'Sistem Operasi', '3', 3, 'Informatika'),
+('211840131', 'Analisis dan Perancangan Perangkat Lunak', '4', 3, 'Informatika'),
+('211850631', 'Grafika Terapan', '5', 3, 'Informatika'),
+('211851131', 'Pembelajaran Mesin', '5', 3, 'Informatika'),
+('211851431', 'Sistem Pendukung Keputusan', '5', 3, 'Informatika'),
+('211851531', 'Sistem Temu Balik Informasi', '5', 3, 'Informatika'),
+('211860120', 'Manajemen Proyek Teknologi Informasi', '6', 2, 'Informatika'),
+('211860220', 'Metodologi Penelitian', '6', 2, 'Informatika'),
+('211860330', 'Rekayasa Perangkat Lunak', '6', 3, 'Informatika'),
+('211860531', 'Teknologi Multimedia', '6', 3, 'Informatika'),
+('211860731', 'Rekayasa Web', '6', 3, 'Informatika'),
+('211861231', 'Pemrosesan Bahasa Alami', '6', 3, 'Informatika'),
+('211861431', 'Pengenalan Pola', '6', 3, 'Informatika'),
+('211861531', 'Komputer Visi', '6', 3, 'Informatika'),
+('211870320', 'Kapita Selekta', '7', 2, 'Informatika'),
+('211870420', 'Kewirausahaan', '7', 2, 'Informatika'),
+('211870620', 'Komunikasi Interpersonal', '7', 2, 'Informatika'),
+('211870820', 'Sosio Informatika', '7', 2, 'Informatika'),
+('2266320', 'Sistem Cerdas', '6', 3, 'Teknik Elektro'),
+('2276120', 'Computer Vision', '7', 3, 'Teknik Elektro'),
+('3370420', 'Perencanaan Bisnis', '7', 3, 'Teknologi Pangan');
 
 -- --------------------------------------------------------
 
@@ -329,11 +372,22 @@ CREATE TABLE `pencapaian` (
 --
 
 CREATE TABLE `pengampu` (
+  `ID_pengampu` int(3) NOT NULL,
   `niy` varchar(8) NOT NULL,
   `kode_matkul` varchar(9) NOT NULL,
   `kelas` varchar(1) NOT NULL,
   `thn_ajaran` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengampu`
+--
+
+INSERT INTO `pengampu` (`ID_pengampu`, `niy`, `kode_matkul`, `kelas`, `thn_ajaran`) VALUES
+(5, '67890', '1975930', 'A', '2022/2023'),
+(6, '67890', '1975930', 'B', '2022/2023'),
+(7, '67890', '1975930', 'C', '2022/2023'),
+(8, '67890', '211870420', 'D', '2022/2023');
 
 --
 -- Indexes for dumped tables
@@ -433,6 +487,7 @@ ALTER TABLE `pencapaian`
 -- Indexes for table `pengampu`
 --
 ALTER TABLE `pengampu`
+  ADD PRIMARY KEY (`ID_pengampu`),
   ADD KEY `niy` (`niy`),
   ADD KEY `kode_matkul` (`kode_matkul`);
 
@@ -444,7 +499,7 @@ ALTER TABLE `pengampu`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `ID_akun` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID_akun` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `asesmen`
@@ -463,6 +518,12 @@ ALTER TABLE `krs`
 --
 ALTER TABLE `pencapaian`
   MODIFY `ID_pencapaian` int(3) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pengampu`
+--
+ALTER TABLE `pengampu`
+  MODIFY `ID_pengampu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
