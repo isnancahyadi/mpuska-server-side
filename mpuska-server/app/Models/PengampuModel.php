@@ -87,7 +87,7 @@ class PengampuModel extends Model
     function getSpecifiedDataPengampu($id)
     {
         $builder = $this->db->table('pengampu');
-        $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, pengampu.kelas, pengampu.thn_ajaran');
+        $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.kode_matkul, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, pengampu.kelas, pengampu.thn_ajaran');
         $builder->join('dosen', 'dosen.niy = pengampu.niy');
         $builder->join('ca_nama_dosen', 'dosen.niy = ca_nama_dosen.niy');
         $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
