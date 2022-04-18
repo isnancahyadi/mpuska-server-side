@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2022 at 03:45 PM
+-- Generation Time: Apr 18, 2022 at 05:20 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -77,7 +77,9 @@ DELIMITER ;
 
 CREATE TABLE `asesmen` (
   `ID_asesmen` int(3) NOT NULL,
-  `nama` varchar(50) NOT NULL
+  `ID_pengampu` int(3) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `persentase` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -147,7 +149,7 @@ CREATE TABLE `ca_nama_dosen` (
 --
 
 INSERT INTO `ca_nama_dosen` (`niy`, `nama_depan`, `nama_tengah`, `nama_belakang`) VALUES
-('67890', 'Fulani', '', 'Nini'),
+('67890', 'Isnan', 'Arif', 'C, S.Kom., M.Kom.'),
 ('60090586', 'Arfiani', 'Nur', 'Khusna, S.T., M.Kom.'),
 ('60181172', 'Guntur', 'Maulana', 'Zamroni, B.Sc., M.Kom.'),
 ('60160951', 'Ika', '', 'Arfiani, S.T., M.Cs.'),
@@ -222,7 +224,7 @@ INSERT INTO `dosen` (`niy`, `gender`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `ema
 ('60160951', '0', 'Yogyakarta', '1988-01-01', '', 'ika.arfiani@tif.uad.ac.id', NULL, NULL),
 ('60160960', '0', 'Yogyakarta', '1988-01-01', '', 'murein.miksa@tif.uad.ac.id', NULL, NULL),
 ('60181172', '1', 'Yogyakarta', '1988-01-01', '', 'guntur.zamroni@tif.uad.ac.id', NULL, NULL),
-('67890', '0', 'Klaten', '1990-03-07', '082111112222', 'fulani@tif.uad.ac.id', NULL, 31);
+('67890', '1', 'Klaten', '1990-03-07', '082111112222', 'fulani@tif.uad.ac.id', 'http://100.100.1.7/mpuska-server-side/mpuska-server/public/template/assets/img/profile/dosen_67890.jpeg', 31);
 
 --
 -- Triggers `dosen`
@@ -403,7 +405,8 @@ ALTER TABLE `akun`
 -- Indexes for table `asesmen`
 --
 ALTER TABLE `asesmen`
-  ADD PRIMARY KEY (`ID_asesmen`);
+  ADD PRIMARY KEY (`ID_asesmen`),
+  ADD KEY `ID_pengampu` (`ID_pengampu`);
 
 --
 -- Indexes for table `ca_alamat_dosen`
@@ -528,6 +531,12 @@ ALTER TABLE `pengampu`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `asesmen`
+--
+ALTER TABLE `asesmen`
+  ADD CONSTRAINT `asesmen_ibfk_1` FOREIGN KEY (`ID_pengampu`) REFERENCES `pengampu` (`ID_pengampu`);
 
 --
 -- Constraints for table `ca_alamat_dosen`
