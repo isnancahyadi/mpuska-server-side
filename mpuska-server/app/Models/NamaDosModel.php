@@ -8,13 +8,13 @@ class NamaDosModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'ca_nama_dosen';
-    protected $primaryKey       = 'niy';
+    protected $primaryKey       = 'niy_nip';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['niy', 'nama_depan', 'nama_tengah', 'nama_belakang'];
+    protected $allowedFields    = ['niy_nip', 'nama_depan', 'nama_tengah', 'nama_belakang'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -24,8 +24,8 @@ class NamaDosModel extends Model
     // protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = ['niy' => 'required'];
-    protected $validationMessages   = ['niy' => ['required' => 'NIY harus diisi']];
+    protected $validationRules      = ['niy_nip' => 'required'];
+    protected $validationMessages   = ['niy_nip' => ['required' => 'NIY/NIP harus diisi']];
     // protected $skipValidation       = false;
     // protected $cleanValidationRules = true;
 

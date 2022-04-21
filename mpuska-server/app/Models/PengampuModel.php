@@ -14,7 +14,7 @@ class PengampuModel extends Model
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['niy', 'kode_matkul', 'kelas', 'thn_ajaran'];
+    protected $allowedFields    = ['niy_nip', 'kode_matkul', 'kelas', 'thn_ajaran'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -25,13 +25,13 @@ class PengampuModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'niy'           => 'required',
+        'niy_nip'       => 'required',
         'kode_matkul'   => 'required',
         'kelas'         => 'required',
         'thn_ajaran'    => 'required'
     ];
     protected $validationMessages   = [
-        'niy'           => ['required' => 'NIY tidak boleh kosong'],
+        'niy_nip'       => ['required' => 'NIY/NIP tidak boleh kosong'],
         'kode_matkul'   => ['required' => 'Kode matakuliah tidak boleh kosong'],
         'kelas'         => ['required' => 'Kelas harus diisi'],
         'thn_ajaran'    => ['required' => 'Tahun ajaran harus diisi']
@@ -53,7 +53,7 @@ class PengampuModel extends Model
     function getAll()
     {
         $builder = $this->db->table('pengampu');
-        $builder->join('dosen', 'dosen.niy = pengampu.niy');
+        $builder->join('dosen', 'dosen.niy_nip = pengampu.niy_nip');
         $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
 
         $query = $builder->get();
@@ -64,8 +64,8 @@ class PengampuModel extends Model
     {
         $builder = $this->db->table('pengampu');
         $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, pengampu.kelas, pengampu.thn_ajaran');
-        $builder->join('dosen', 'dosen.niy = pengampu.niy');
-        $builder->join('ca_nama_dosen', 'dosen.niy = ca_nama_dosen.niy');
+        $builder->join('dosen', 'dosen.niy_nip = pengampu.niy_nip');
+        $builder->join('ca_nama_dosen', 'dosen.niy_nip = ca_nama_dosen.niy_nip');
         $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
 
         $query = $builder->get();

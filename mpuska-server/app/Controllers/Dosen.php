@@ -40,10 +40,10 @@ class Dosen extends BaseController
     public function store()
     {
         $validate = $this->validate([
-            'niy' => [
+            'niy_nip' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'NIY tidak boleh kosong!'
+                    'required' => 'NIY/NIP tidak boleh kosong!'
                 ],
             ],
             'gender' => [
@@ -120,10 +120,10 @@ class Dosen extends BaseController
     public function update($id = null)
     {
         $validate = $this->validate([
-            'niy' => [
+            'niy_nip' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'NIY tidak boleh kosong!'
+                    'required' => 'NIY/NIP tidak boleh kosong!'
                 ],
             ],
             'gender' => [

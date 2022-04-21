@@ -34,10 +34,10 @@ class Auth extends BaseController
 
                     return $this->respond($params, 200);
                 } else {
-                    return $this->failValidationErrors('NIY/NIM atau password salah');
+                    return $this->failValidationErrors('NIY/NIP/NIM atau password salah');
                 }
             } else {
-                return $this->failNotFound('NIY/NIM tidak ditemukan');
+                return $this->failNotFound('NIY/NIP/NIM tidak ditemukan');
             }
         }
     }

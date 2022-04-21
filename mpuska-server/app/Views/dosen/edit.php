@@ -25,15 +25,15 @@
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
-                            <label>No. Induk Yayasan *</label>
-                            <input type="text" name="niy" value="<?= old('niy', $value->niy) ?>" class="form-control <?= $validation->hasError('niy') ? 'is-invalid' : null ?>" placeholder="NIY">
+                            <label>No. Induk Yayasan/Pegawai *</label>
+                            <input type="text" name="niy_nip" value="<?= old('niy_nip', $value->niy_nip) ?>" class="form-control <?= $validation->hasError('niy_nip') ? 'is-invalid' : null ?>" placeholder="NIY/NIP">
                             <div class="invalid-feedback">
-                                <?= $validation->getError('niy') ?>
+                                <?= $validation->getError('niy_nip') ?>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>Nama Depan</label>
+                                <label>Nama Depan *</label>
                                 <input type="text" name="nama_depan" value="<?= old('nama_depan', $value->nama_depan) ?>" class="form-control" placeholder="Nama Depan">
                             </div>
                             <div class="form-group col-md-4">

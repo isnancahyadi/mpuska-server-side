@@ -8,13 +8,13 @@ class DosenModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'dosen';
-    protected $primaryKey       = 'niy';
+    protected $primaryKey       = 'niy_nip';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['niy', 'gender', 'tempat_lahir', 'tgl_lahir', 'no_hp', 'email', 'foto', 'ID_akun'];
+    protected $allowedFields    = ['niy_nip', 'gender', 'tempat_lahir', 'tgl_lahir', 'no_hp', 'email', 'foto', 'ID_akun'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -25,14 +25,14 @@ class DosenModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'niy'           => 'required',
+        'niy_nip'       => 'required',
         'gender'        => 'required',
         'tempat_lahir'  => 'required',
         'tgl_lahir'     => 'required',
         'email'         => 'required|valid_email'
     ];
     protected $validationMessages   = [
-        'niy'           => ['required' => 'NIY harus diisi'],
+        'niy_nip'       => ['required' => 'NIY/NIP harus diisi'],
         'gender'        => ['required' => 'Jenis kelamin harus diisi'],
         'tempat_lahir'  => ['required' => 'Tempat lahir harus diisi'],
         'tgl_lahir'     => ['required' => 'Tanggal lahir harus diisi'],
@@ -58,8 +58,8 @@ class DosenModel extends Model
     function getAll()
     {
         $builder = $this->db->table('dosen');
-        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy = dosen.niy');
-        $builder->join('ca_alamat_dosen', 'ca_alamat_dosen.niy = dosen.niy');
+        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy_nip = dosen.niy_nip');
+        $builder->join('ca_alamat_dosen', 'ca_alamat_dosen.niy_nip = dosen.niy_nip');
 
         $query = $builder->get();
         return $query->getResult();
@@ -68,9 +68,9 @@ class DosenModel extends Model
     function getSpecified($id)
     {
         $builder = $this->db->table('dosen');
-        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy = dosen.niy');
-        $builder->join('ca_alamat_dosen', 'ca_alamat_dosen.niy = dosen.niy');
-        $builder->where('dosen.niy', $id);
+        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy_nip = dosen.niy_nip');
+        $builder->join('ca_alamat_dosen', 'ca_alamat_dosen.niy_nip = dosen.niy_nip');
+        $builder->where('dosen.niy_nip', $id);
 
         $query = $builder->get();
 

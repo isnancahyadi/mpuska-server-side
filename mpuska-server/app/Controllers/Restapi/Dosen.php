@@ -57,7 +57,7 @@ class Dosen extends ResourceController
     public function create()
     {
         $dataDos = [
-            'niy'           => $this->request->getVar('niy'),
+            'niy_nip'       => $this->request->getVar('niy_nip'),
             'gender'        => $this->request->getVar('gender'),
             'tempat_lahir'  => $this->request->getVar('tempat_lahir'),
             'tgl_lahir'     => $this->request->getVar('tgl_lahir'),
@@ -67,14 +67,14 @@ class Dosen extends ResourceController
         ];
 
         $dataNamaDos = [
-            'niy'           => $this->request->getVar('niy'),
+            'niy_nip'       => $this->request->getVar('niy_nip'),
             'nama_depan'    => $this->request->getVar('nama_depan'),
             'nama_tengah'   => $this->request->getVar('nama_tengah'),
             'nama_belakang' => $this->request->getVar('nama_belakang'),
         ];
 
         $dataAlamatDos = [
-            'niy'       => $this->request->getVar('niy'),
+            'niy_nip'   => $this->request->getVar('niy_nip'),
             'alamat'    => $this->request->getVar('alamat'),
             'kecamatan' => $this->request->getVar('kecamatan'),
             'kabupaten' => $this->request->getVar('kabupaten'),
@@ -119,11 +119,11 @@ class Dosen extends ResourceController
     public function update($id = null)
     {
         $data = $this->request->getRawInput();
-        $data['niy'] = $id;
+        $data['niy_nip'] = $id;
 
-        $isExists = $this->dos->where('niy', $id)->getAll();
+        $isExists = $this->dos->where('niy_nip', $id)->getAll();
         if (!$isExists) {
-            return $this->failNotFound('Data tidak ditemukan untuk NIY ' . $id);
+            return $this->failNotFound('Data tidak ditemukan untuk NIY/NIP ' . $id);
         }
 
         if ($this->dos->update($id, $data)) {
@@ -148,7 +148,7 @@ class Dosen extends ResourceController
      */
     public function delete($id = null)
     {
-        $data = $this->dos->where('niy', $id)->findAll();
+        $data = $this->dos->where('niy_nip', $id)->findAll();
         if ($data) {
             $this->dos->delete($id);
 

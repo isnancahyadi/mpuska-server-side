@@ -42,10 +42,10 @@ class Pengampu extends BaseController
     public function store()
     {
         $validate = $this->validate([
-            'niy' => [
+            'niy_nip' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'NIY tidak boleh kosong'
+                    'required' => 'NIY/NIP tidak boleh kosong'
                 ],
             ],
             'kode_matkul' => [
@@ -106,10 +106,10 @@ class Pengampu extends BaseController
                     'required' => 'Kode matakuliah tidak boleh kosong'
                 ],
             ],
-            'niy' => [
+            'niy_nip' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'NIY tidak boleh kosong'
+                    'required' => 'NIY/NIP tidak boleh kosong'
                 ],
             ],
             'kelas' => [

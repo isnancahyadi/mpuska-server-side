@@ -8,13 +8,13 @@ class AlamatDosModel extends Model
 {
     // protected $DBGroup          = 'default';
     protected $table            = 'ca_alamat_dosen';
-    protected $primaryKey       = 'niy';
+    protected $primaryKey       = 'niy_nip';
     // protected $useAutoIncrement = true;
     // protected $insertID         = 0;
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['niy', 'alamat', 'kecamatan', 'kabupaten', 'provinsi', 'kode_pos'];
+    protected $allowedFields    = ['niy_nip', 'alamat', 'kecamatan', 'kabupaten', 'provinsi', 'kode_pos'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -25,7 +25,7 @@ class AlamatDosModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'niy'       => 'required',
+        'niy_nip'   => 'required',
         'alamat'    => 'required',
         'kecamatan' => 'required',
         'kabupaten' => 'required',
@@ -33,7 +33,7 @@ class AlamatDosModel extends Model
         'kode_pos'  => 'required'
     ];
     protected $validationMessages   = [
-        'niy'       => ['required' => 'NIY harus diisi'],
+        'niy_nip'   => ['required' => 'NIY/NIP harus diisi'],
         'alamat'    => ['required' => 'Alamat harus diisi'],
         'kecamatan' => ['required' => 'Kecamatan harus diisi'],
         'kabupaten' => ['required' => 'Kabupaten harus diisi'],

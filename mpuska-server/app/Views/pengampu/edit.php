@@ -40,15 +40,15 @@
                         </div>
                         <div class="form-group">
                             <label>Dosen *</label>
-                            <select name="niy" class="form-control <?= isset($errors['niy']) ? 'is-invalid' : null ?>">
+                            <select name="niy_nip" class="form-control <?= isset($errors['niy_nip']) ? 'is-invalid' : null ?>">
                                 <option value="" hidden></option>
                                 <?php foreach ($dosen as $key => $dos) : ?>
-                                    <option value="<?= $dos->niy ?>" <?= old('niy', $value->niy) == $dos->niy ? 'selected' : null ?>>
+                                    <option value="<?= $dos->niy_nip ?>" <?= old('niy_nip', $value->niy_nip) == $dos->niy_nip ? 'selected' : null ?>>
                                         <?= $dos->nama_depan . " " . $dos->nama_tengah . " " . $dos->nama_belakang ?>
                                     </option>
                                 <?php endforeach ?>
                                 <div class="invalid-feedback">
-                                    <?= isset($errors['niy']) ? $errors['niy'] : null ?>
+                                    <?= isset($errors['niy_nip']) ? $errors['niy_nip'] : null ?>
                                 </div>
                             </select>
                         </div>

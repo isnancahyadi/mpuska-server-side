@@ -24,15 +24,15 @@
                 <form action="<?= site_url('dosen/store') ?>" method="POST" autocomplete="off">
                     <?= csrf_field() ?>
                     <div class="form-group">
-                        <label>No. Induk Yayasan *</label>
-                        <input type="text" name="niy" value="<?= old('niy') ?>" class="form-control <?= isset($errors['niy']) ? 'is-invalid' : null ?>" placeholder="NIY">
+                        <label>No. Induk Yayasan/Pegawai *</label>
+                        <input type="text" name="niy_nip" value="<?= old('niy_nip') ?>" class="form-control <?= isset($errors['niy_nip']) ? 'is-invalid' : null ?>" placeholder="NIY/NIP">
                         <div class="invalid-feedback">
-                            <?= isset($errors['niy']) ? $errors['niy'] : null ?>
+                            <?= isset($errors['niy_nip']) ? $errors['niy_nip'] : null ?>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>Nama Depan</label>
+                            <label>Nama Depan *</label>
                             <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan">
                         </div>
                         <div class="form-group col-md-4">
