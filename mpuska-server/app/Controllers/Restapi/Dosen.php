@@ -2,7 +2,6 @@
 
 namespace App\Controllers\Restapi;
 
-use App\Models\AlamatDosModel;
 use App\Models\DosenModel;
 use App\Models\NamaDosModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -13,7 +12,6 @@ class Dosen extends ResourceController
     {
         $this->dos          = new DosenModel();
         $this->namaDos      = new NamaDosModel();
-        $this->alamatDos    = new AlamatDosModel();
     }
     /**
      * Return an array of resource objects, themselves in array format
@@ -59,40 +57,26 @@ class Dosen extends ResourceController
         $dataDos = [
             'niy_nip'       => $this->request->getVar('niy_nip'),
             'gender'        => $this->request->getVar('gender'),
-            'tempat_lahir'  => $this->request->getVar('tempat_lahir'),
-            'tgl_lahir'     => $this->request->getVar('tgl_lahir'),
             'no_hp'         => $this->request->getVar('no_hp'),
             'email'         => $this->request->getVar('email'),
             'foto'          => $this->request->getVar('foto')
         ];
 
         $dataNamaDos = [
-            'niy_nip'       => $this->request->getVar('niy_nip'),
-            'nama_depan'    => $this->request->getVar('nama_depan'),
-            'nama_tengah'   => $this->request->getVar('nama_tengah'),
-            'nama_belakang' => $this->request->getVar('nama_belakang'),
-        ];
-
-        $dataAlamatDos = [
-            'niy_nip'   => $this->request->getVar('niy_nip'),
-            'alamat'    => $this->request->getVar('alamat'),
-            'kecamatan' => $this->request->getVar('kecamatan'),
-            'kabupaten' => $this->request->getVar('kabupaten'),
-            'provinsi'  => $this->request->getVar('provinsi'),
-            'kode_pos'  => $this->request->getVar('kode_pos')
+            'niy_nip'           => $this->request->getVar('niy_nip'),
+            'gelar_depan'       => $this->request->getVar('gelar_depan'),
+            'nama_depan'        => $this->request->getVar('nama_depan'),
+            'nama_tengah'       => $this->request->getVar('nama_tengah'),
+            'nama_belakang'     => $this->request->getVar('nama_belakang'),
+            'gelar_belakang'    => $this->request->getVar('gelar_belakang')
         ];
 
         $this->dos->insert($dataDos);
         $this->namaDos->insert($dataNamaDos);
-        $this->alamatDos->insert($dataAlamatDos);
 
         if ($this->dos->affectedRows() > 0) {
             if ($this->namaDos->affectedRows() > 0) {
-                if ($this->alamatDos->affectedRows() > 0) {
-                    return $this->respondCreated('Data berhasil tersimpan');
-                } else {
-                    return $this->fail($this->alamatDos->errors());
-                }
+                return $this->respondCreated('Data berhasil tersimpan');
             } else {
                 return $this->fail($this->namaDos->errors());
             }
@@ -128,11 +112,7 @@ class Dosen extends ResourceController
 
         if ($this->dos->update($id, $data)) {
             if ($this->namaDos->update($id, $data)) {
-                if ($this->alamatDos->update($id, $data)) {
-                    return $this->respondCreated('Data berhasil diupdate');
-                } else {
-                    return $this->fail($this->alamatDos->errors());
-                }
+                return $this->respondCreated('Data berhasil diupdate');
             } else {
                 return $this->fail($this->namaDos->errors());
             }

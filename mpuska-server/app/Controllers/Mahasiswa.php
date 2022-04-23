@@ -52,40 +52,16 @@ class Mahasiswa extends BaseController
                     'required' => 'Jenis kelamin tidak boleh kosong!'
                 ],
             ],
-            'tgl_lahir' => [
+            'nama_tim' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Tanggal lahir tidak boleh kosong!'
+                    'required' => 'Nama tim tidak boleh kosong!'
                 ],
             ],
-            'tempat_lahir' => [
+            'email' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Tempat lahir tidak boleh kosong!'
-                ],
-            ],
-            'alamat' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Alamat tidak boleh kosong!'
-                ],
-            ],
-            'kecamatan' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kecamatan tidak boleh kosong!'
-                ],
-            ],
-            'kabupaten' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kabupaten tidak boleh kosong!'
-                ],
-            ],
-            'provinsi' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Provinsi tidak boleh kosong!'
+                    'required' => 'Email tidak boleh kosong!'
                 ],
             ],
         ]);
@@ -132,40 +108,16 @@ class Mahasiswa extends BaseController
                     'required' => 'Jenis kelamin tidak boleh kosong!'
                 ],
             ],
-            'tgl_lahir' => [
+            'nama_tim' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Tanggal lahir tidak boleh kosong!'
+                    'required' => 'Nama tim tidak boleh kosong!'
                 ],
             ],
-            'tempat_lahir' => [
+            'email' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Tempat lahir tidak boleh kosong!'
-                ],
-            ],
-            'alamat' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Alamat tidak boleh kosong!'
-                ],
-            ],
-            'kecamatan' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kecamatan tidak boleh kosong!'
-                ],
-            ],
-            'kabupaten' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kabupaten tidak boleh kosong!'
-                ],
-            ],
-            'provinsi' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Provinsi tidak boleh kosong!'
+                    'required' => 'Email tidak boleh kosong!'
                 ],
             ],
         ]);

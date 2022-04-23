@@ -45,11 +45,9 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Gender</th>
-                            <th>Tempat Lahir</th>
-                            <th>Tanggal Lahir</th>
                             <th>No. HP</th>
-                            <th>Alamat</th>
                             <th>Email</th>
+                            <th>Nama Tim</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -60,11 +58,9 @@
                                 <td><?= $value->nim ?></td>
                                 <td><?= $value->nama_depan . " " . $value->nama_tengah . " " . $value->nama_belakang ?></td>
                                 <td><?= $value->gender == '1' ? "Pria" : ($value->gender == '0' ? "Wanita" : "0") ?></td>
-                                <td><?= $value->tempat_lahir ?></td>
-                                <td><?= $value->tgl_lahir ?></td>
                                 <td><?= $value->no_hp ?></td>
-                                <td><?= $value->alamat . ", " . $value->kecamatan . ", " . $value->kabupaten . ", " . $value->provinsi . ", " . $value->kode_pos ?></td>
                                 <td><?= $value->email ?></td>
+                                <td><?= $value->nama_tim ?></td>
                                 <td class="text-center" style="width: 15%">
                                     <a href="<?= site_url('mahasiswa/edit/' . $value->nim) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <form action="<?= site_url('mahasiswa/delete/' . $value->nim) ?>" method="POST" class="d-inline" id="del-<?= $value->nim ?>">

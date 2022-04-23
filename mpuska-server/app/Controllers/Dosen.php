@@ -46,46 +46,22 @@ class Dosen extends BaseController
                     'required' => 'NIY/NIP tidak boleh kosong!'
                 ],
             ],
+            'nama_depan' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Nama depan tidak boleh kosong!'
+                ],
+            ],
             'gender' => [
                 'rules'  => 'required',
                 'errors' => [
                     'required' => 'Jenis kelamin tidak boleh kosong!'
                 ],
             ],
-            'tgl_lahir' => [
+            'email' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Tanggal lahir tidak boleh kosong!'
-                ],
-            ],
-            'tempat_lahir' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Tempat lahir tidak boleh kosong!'
-                ],
-            ],
-            'alamat' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Alamat tidak boleh kosong!'
-                ],
-            ],
-            'kecamatan' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kecamatan tidak boleh kosong!'
-                ],
-            ],
-            'kabupaten' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kabupaten tidak boleh kosong!'
-                ],
-            ],
-            'provinsi' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Provinsi tidak boleh kosong!'
+                    'required' => 'Email tidak boleh kosong!'
                 ],
             ],
         ]);
@@ -126,46 +102,22 @@ class Dosen extends BaseController
                     'required' => 'NIY/NIP tidak boleh kosong!'
                 ],
             ],
+            'nama_depan' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Nama depan tidak boleh kosong!'
+                ],
+            ],
             'gender' => [
                 'rules'  => 'required',
                 'errors' => [
                     'required' => 'Jenis kelamin tidak boleh kosong!'
                 ],
             ],
-            'tgl_lahir' => [
+            'email' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Tanggal lahir tidak boleh kosong!'
-                ],
-            ],
-            'tempat_lahir' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Tempat lahir tidak boleh kosong!'
-                ],
-            ],
-            'alamat' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Alamat tidak boleh kosong!'
-                ],
-            ],
-            'kecamatan' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kecamatan tidak boleh kosong!'
-                ],
-            ],
-            'kabupaten' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Kabupaten tidak boleh kosong!'
-                ],
-            ],
-            'provinsi' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Provinsi tidak boleh kosong!'
+                    'required' => 'Email tidak boleh kosong!'
                 ],
             ],
         ]);

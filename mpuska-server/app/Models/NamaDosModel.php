@@ -14,7 +14,7 @@ class NamaDosModel extends Model
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['niy_nip', 'nama_depan', 'nama_tengah', 'nama_belakang'];
+    protected $allowedFields    = ['niy_nip', 'gelar_depan', 'nama_depan', 'nama_tengah', 'nama_belakang', 'gelar_belakang'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -24,8 +24,14 @@ class NamaDosModel extends Model
     // protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = ['niy_nip' => 'required'];
-    protected $validationMessages   = ['niy_nip' => ['required' => 'NIY/NIP harus diisi']];
+    protected $validationRules      = [
+        'niy_nip'       => 'required',
+        'nama_depan'    => 'required'
+    ];
+    protected $validationMessages   = [
+        'niy_nip'       => ['required' => 'NIY/NIP harus diisi'],
+        'nama_depan'    => ['requierd' => 'Nama depan harus diisi']
+    ];
     // protected $skipValidation       = false;
     // protected $cleanValidationRules = true;
 

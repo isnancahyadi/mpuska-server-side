@@ -21,7 +21,7 @@
             <div class="card-body col-md-6">
                 <?php $validation = \Config\Services::validation() ?>
                 <?php foreach ($dosen as $key => $value) : ?>
-                    <form action="<?= site_url('dosen/update/' . $value->niy) ?>" method="POST" autocomplete="off">
+                    <form action="<?= site_url('dosen/update/' . $value->niy_nip) ?>" method="POST" autocomplete="off">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
@@ -46,6 +46,16 @@
                             </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Gelar Depan</label>
+                                <input type="text" name="gelar_depan" value="<?= old('gelar_depan', $value->gelar_depan) ?>" class="form-control" placeholder="Gelar Depan">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Gelar Belakang</label>
+                                <input type="text" name="gelar_belakang" value="<?= old('gelar_belakang', $value->gelar_belakang) ?>" class="form-control" placeholder="Gelar Belakang">
+                            </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label>Jenis Kelamin *</label>
                                 <div class="form-check">
@@ -61,64 +71,14 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Tanggal Lahir *</label>
-                                <input type="date" name="tgl_lahir" value="<?= old('tgl_lahir', $value->tgl_lahir) ?>" class="form-control <?= $validation->hasError('tgl_lahir') ? 'is-invalid' : null ?>">
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('tgl_lahir') ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Tempat Lahir *</label>
-                            <input type="text" name="tempat_lahir" value="<?= old('tempat_lahir', $value->tempat_lahir) ?>" class="form-control <?= $validation->hasError('tempat_lahir') ? 'is-invalid' : null ?>" placeholder="Tempat Lahir">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('tempat_lahir') ?>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label>No. HP</label>
                             <input type="number" name="no_hp" value="<?= old('no_hp', $value->no_hp) ?>" class="form-control" placeholder="No. HP">
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
+                            <label>Email *</label>
                             <input type="email" name="email" value="<?= old('email', $value->email) ?>" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat *</label>
-                            <input type="text" name="alamat" value="<?= old('alamat', $value->alamat) ?>" class="form-control <?= $validation->hasError('alamat') ? 'is-invalid' : null ?>" placeholder="Alamat">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('alamat') ?>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Kecamatan *</label>
-                                <input type="text" name="kecamatan" value="<?= old('kecamatan', $value->kecamatan) ?>" class="form-control <?= $validation->hasError('kecamatan') ? 'is-invalid' : null ?>" placeholder="Kecamatan">
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('kecamatan') ?>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Kabupaten *</label>
-                                <input type="text" name="kabupaten" value="<?= old('kabupaten', $value->kabupaten) ?>" class="form-control <?= $validation->hasError('kabupaten') ? 'is-invalid' : null ?>" placeholder="Kabupaten">
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('kabupaten') ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Provinsi *</label>
-                                <input type="text" name="provinsi" value="<?= old('provinsi', $value->provinsi) ?>" class="form-control <?= $validation->hasError('provinsi') ? 'is-invalid' : null ?>" placeholder="Provinsi">
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('provinsi') ?>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Kode Pos</label>
-                                <input type="text" name="kode_pos" value="<?= old('kode_pos', $value->kode_pos) ?>" class="form-control" placeholder="Kode Pos">
-                            </div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"> Save</i></button>
