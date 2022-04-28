@@ -47,6 +47,7 @@
                             <th>Gender</th>
                             <th>No. HP</th>
                             <th>Email</th>
+                            <th>Status MBKM</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -59,6 +60,9 @@
                                 <td><?= $value->gender == '1' ? "Pria" : ($value->gender == '0' ? "Wanita" : "0") ?></td>
                                 <td><?= $value->no_hp ?></td>
                                 <td><?= $value->email ?></td>
+                                <td>
+                                    <input data-id="<?= $value->niy_nip ?>" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Aktif" data-off="Non-Aktif" <?= $value->status_mbkm == '1' ? 'checked' : '' ?>>
+                                </td>
                                 <td class="text-center" style="width: 15%">
                                     <a href="<?= site_url('dosen/edit/' . $value->niy_nip) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <form action="<?= site_url('dosen/delete/' . $value->niy_nip) ?>" method="POST" class="d-inline" id="del-<?= $value->niy_nip ?>">

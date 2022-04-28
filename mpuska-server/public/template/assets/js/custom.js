@@ -16,3 +16,19 @@ $(document).ready( function () {
 function submitDel(id) {
     $('#del-'+id).submit();
 }
+
+$(function() {
+    $('.toggle-class').change(function() {
+        var status_mbkm = $(this).prop('checked') == true ? '1' : '0';
+        var niy_nip = $(this).data('id');
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "changeStatus",
+            data: {'status_mbkm': status_mbkm, 'niy_nip': niy_nip},
+            success: function(data){
+                console.log('Success')
+            }
+        });
+    })
+});

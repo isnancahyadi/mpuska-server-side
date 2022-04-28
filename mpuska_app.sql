@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 07:35 AM
+-- Generation Time: Apr 28, 2022 at 09:28 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -178,7 +178,7 @@ CREATE TABLE `dosen` (
   `email` varchar(50) DEFAULT NULL,
   `foto` text DEFAULT NULL,
   `ID_akun` int(3) DEFAULT NULL,
-  `status_mbkm` varchar(1) NOT NULL DEFAULT '0'
+  `status_mbkm` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

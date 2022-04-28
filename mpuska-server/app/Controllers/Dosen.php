@@ -4,9 +4,13 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\DosenModel;
+use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\HTTP\Request;
+use CodeIgniter\HTTP\RequestInterface;
 
 class Dosen extends BaseController
 {
+    use ResponseTrait;
     function __construct()
     {
         helper(['restclient']);
@@ -139,5 +143,19 @@ class Dosen extends BaseController
         $url = site_url('restapi/dosen/' . $id);
         akses_restapi('DELETE', $url, $id);
         return redirect()->to(site_url('dosen/tampil'))->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function changeStatus()
+    {
+        if ($this->request->isAJAX()) {
+            $niy_nip = $this->request->getVar('niy_nip');
+            $status_mbkm = $this->request->getVar('status_mbkm');
+
+            $data = [
+                'status_mbkm' => $status_mbkm
+            ];
+
+            $this->db->table('dosen')->where('niy_nip', $niy_nip)->update($data);
+        }
     }
 }
