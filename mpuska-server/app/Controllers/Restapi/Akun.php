@@ -73,7 +73,13 @@ class Akun extends ResourceController
             if ($searchMhs) {
                 $hakAkses = '2';
             } elseif ($searchDos) {
-                $hakAkses = '1';
+                $status_mbkm = $this->dos->where('niy_nip', $post['username'])->findColumn('status_mbkm');
+
+                if ($status_mbkm == "1") {
+                    $hakAkses = '1';
+                } else {
+                    return $this->failForbidden('Forbidden');
+                }
             } else {
                 return $this->failNotFound('User tidak ditemukan');
             }
