@@ -70,6 +70,10 @@
                             <label>Email *</label>
                             <input type="email" name="email" value="<?= old('email', $value->email) ?>" class="form-control" placeholder="Email">
                         </div>
+                        <div class="form-group">
+                            <label>Nama Tim *</label>
+                            <input type="text" name="nama_tim" value="<?= old('nama_tim', $value->nama_tim) ?>" class="form-control" placeholder="Nama Tim">
+                        </div>
                         <div>
                             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"> Save</i></button>
                             <button type="reset" class="btn btn-secondary">Reset</button>
