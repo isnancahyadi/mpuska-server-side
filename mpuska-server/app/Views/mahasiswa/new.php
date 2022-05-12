@@ -72,6 +72,13 @@
                             <?= isset($errors['email']) ? $errors['email'] : null ?>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Nama Tim *</label>
+                        <input type="text" name="nama_tim" class="form-control <?= isset($errors['nama_tim']) ? 'is-invalid' : null ?>" placeholder="Nama Tim">
+                        <div class="invalid-feedback">
+                            <?= isset($errors['nama_tim']) ? $errors['nama_tim'] : null ?>
+                        </div>
+                    </div>
                     <div>
                         <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"> Save</i></button>
                         <button type="reset" class="btn btn-secondary">Reset</button>
