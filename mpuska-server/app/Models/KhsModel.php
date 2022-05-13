@@ -77,10 +77,12 @@ class KhsModel extends Model
     function getMhs($id, $kode_matkul, $kelas, $thn_ajaran)
     {
         $builder = $this->db->table('khs');
-        $builder->select('mahasiswa.nim, ca_nama_mahasiswa.nama_depan, ca_nama_mahasiswa.nama_tengah, ca_nama_mahasiswa.nama_belakang, mahasiswa.foto');
+        $builder->select('mahasiswa.nim, ca_nama_mahasiswa.nama_depan, ca_nama_mahasiswa.nama_tengah, ca_nama_mahasiswa.nama_belakang, mahasiswa.foto, asesmen.nama, asesmen.bobot, khs.nilai');
         $builder->join('krs', 'khs.ID_krs = krs.ID_krs');
         $builder->join('mahasiswa', 'krs.nim = mahasiswa.nim');
         $builder->join('ca_nama_mahasiswa', 'ca_nama_mahasiswa.nim = mahasiswa.nim');
+        $builder->join('matakuliah', 'krs.kode_matkul = matakuliah.kode_matkul');
+        $builder->join('asesmen', 'khs.ID_asesmen = asesmen.ID_asesmen');
         $builder->join('pengampu', 'khs.ID_pengampu = pengampu.ID_pengampu');
         $builder->join('dosen', 'pengampu.niy_nip = dosen.niy_nip');
         $builder->groupBy('mahasiswa.nim');
