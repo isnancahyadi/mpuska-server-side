@@ -28,4 +28,12 @@ class Khs extends BaseController
         $data = $this->khs->getMhs($id, $post['kode_matkul'], $post['kelas'], $post['thn_ajaran']);
         return $this->respond($data);
     }
+
+    public function getScoreMhs($id = null)
+    {
+        $post = $this->request->getPost();
+
+        $data = $this->khs->getScoreMhs($id, $post['kode_matkul'], $post['kelas'], $post['thn_ajaran']);
+        return $this->respond($data);
+    }
 }

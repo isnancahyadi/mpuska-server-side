@@ -42,6 +42,7 @@ $routes->resource('restapi/matakuliah');
 $routes->resource('restapi/pengampu');
 
 $routes->post('restapi/khs/getlistmhs/(:num)', 'RestApi\Khs::getListMhs/$1');
+$routes->post('restapi/khs/getscoremhs/(:num)', 'RestApi\Khs::getScoreMhs/$1');
 
 /*
  * --------------------------------------------------------------------
