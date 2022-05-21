@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Controllers\Restapi\Khs;
 use CodeIgniter\Model;
 
 class KhsModel extends Model
@@ -109,6 +110,24 @@ class KhsModel extends Model
         $builder->where('pengampu.kode_matkul', $kode_matkul);
         $builder->where('pengampu.kelas', $kelas);
         $builder->where('pengampu.thn_ajaran', $thn_ajaran);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    function getAssessment($id, $kode_matkul, $kelas, $thn_ajaran)
+    {
+        $builder = $this->db->table('asesmen');
+        $builder->select('asesmen.nama, asesmen.bobot');
+        $builder->join('khs', 'asesmen.ID_asesmen = khs.ID_asesmen');
+        $builder->join('pengampu', 'khs.ID_pengampu = pengampu.ID_pengampu');
+        $builder->join('matakuliah', 'pengampu.kode_matkul = matakuliah.kode_matkul');
+        $builder->join('dosen', 'pengampu.niy_nip = dosen.niy_nip');
+        $builder->where('dosen.niy_nip', $id);
+        $builder->where('pengampu.kode_matkul', $kode_matkul);
+        $builder->where('pengampu.kelas', $kelas);
+        $builder->where('pengampu.thn_ajaran', $thn_ajaran);
+        $builder->groupBy('asesmen.nama');
 
         $query = $builder->get();
         return $query->getResult();
