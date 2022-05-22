@@ -132,4 +132,26 @@ class KhsModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getcpl($id)
+    {
+        $builder = $this->db->table('cpl');
+        $builder->select('cpl.cpl');
+        $builder->join('matakuliah', 'cpl.kode_matkul = matakuliah.kode_matkul');
+        $builder->where('matakuliah.kode_matkul', $id);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    function getcpmk($id)
+    {
+        $builder = $this->db->table('cpmk');
+        $builder->select('cpmk.cpmk');
+        $builder->join('matakuliah', 'cpmk.kode_matkul = matakuliah.kode_matkul');
+        $builder->where('matakuliah.kode_matkul', $id);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

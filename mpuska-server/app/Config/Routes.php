@@ -44,6 +44,8 @@ $routes->resource('restapi/pengampu');
 $routes->post('restapi/khs/getlistmhs/(:num)', 'RestApi\Khs::getListMhs/$1');
 $routes->post('restapi/khs/getscoremhs/(:num)', 'RestApi\Khs::getScoreMhs/$1');
 $routes->post('restapi/khs/getassessment/(:num)', 'RestApi\Khs::getAssessment/$1');
+$routes->get('restapi/khs/getcpl/(:num)', 'RestApi\Khs::getcpl/$1');
+$routes->get('restapi/khs/getcpmk/(:num)', 'RestApi\Khs::getcpmk/$1');
 
 /*
  * --------------------------------------------------------------------

@@ -44,4 +44,16 @@ class Khs extends BaseController
         $data = $this->khs->getAssessment($id, $post['kode_matkul'], $post['kelas'], $post['thn_ajaran']);
         return $this->respond($data);
     }
+
+    public function getcpl($id = null)
+    {
+        $data = $this->khs->getcpl($id);
+        return $this->respond($data);
+    }
+
+    public function getcpmk($id = null)
+    {
+        $data = $this->khs->getcpmk($id);
+        return $this->respond($data);
+    }
 }
