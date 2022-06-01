@@ -56,4 +56,21 @@ class Khs extends BaseController
         $data = $this->khs->getcpmk($id);
         return $this->respond($data);
     }
+
+
+    public function updateScoreMhs($id = null)
+    {
+        $data = $this->request->getRawInput();
+
+        foreach ($data['ID_asesmen'] as $key => $value) {
+            $batchData[] = [
+                'ID_asesmen' => (int)$data['ID_asesmen'][$key],
+                'nilai' => (int)$data['nilai'][$key]
+            ];
+        }
+
+        $builder = $this->db->table('khs');
+        $builder->where('ID_krs', $id);
+        $builder->updateBatch($batchData, 'ID_asesmen');
+    }
 }
