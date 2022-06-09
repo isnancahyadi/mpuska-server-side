@@ -73,4 +73,20 @@ class Khs extends BaseController
         $builder->where('ID_krs', $id);
         $builder->updateBatch($batchData, 'ID_asesmen');
     }
+
+    public function updateAssessments()
+    {
+        $data = $this->request->getRawInput();
+
+        foreach ($data['ID_asesmen'] as $key => $value) {
+            $batchData[] = [
+                'ID_asesmen' => (int)$data['ID_asesmen'][$key],
+                'nama' => $data['nama'][$key],
+                'bobot' => (int)$data['bobot'][$key]
+            ];
+        }
+
+        $builder = $this->db->table('asesmen');
+        $builder->updateBatch($batchData, 'ID_asesmen');
+    }
 }
