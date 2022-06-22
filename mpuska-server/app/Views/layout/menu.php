@@ -18,7 +18,10 @@
 <li class="nav-item dropdown">
     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-book-open"></i><span>Matakuliah</span></a>
     <ul class="dropdown-menu">
-        <li><a class="nav-link" href="<?= site_url('matakuliah/tampil') ?>">Data Matakuliah</a></li>
+        <li><a class="nav-link" href="<?= site_url('matakuliah/tampil') ?>">Matakuliah MBKM</a></li>
+    </ul>
+    <ul class="dropdown-menu">
+        <li><a class="nav-link" href="#">Matakuliah Konversi</a></li>
     </ul>
     <ul class="dropdown-menu">
         <li><a class="nav-link" href="<?= site_url('pengampu/tampil') ?>">Pengampu</a></li>

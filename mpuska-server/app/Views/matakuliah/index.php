@@ -1,13 +1,13 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Data Matakuliah &mdash; Mpuska</title>
+<title>Matakuliah MBKM &mdash; Mpuska</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
     <div class="section-header">
-        <h1>Matakuliah</h1>
+        <h1>Matakuliah MBKM</h1>
         <div class="section-header-button">
             <a href="<?= site_url('matakuliah/add') ?>" class="btn btn-primary">Add New</a>
         </div>

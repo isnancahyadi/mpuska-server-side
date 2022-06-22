@@ -14,7 +14,7 @@ class KrsModel extends Model
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['nim', 'kode_matkul', 'kelas', 'thn_ajaran'];
+    protected $allowedFields    = ['nim', 'ID_pengampu'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -26,15 +26,11 @@ class KrsModel extends Model
     // Validation
     protected $validationRules      = [
         'nim'           => 'required',
-        'kode_matkul'   => 'required',
-        'kelas'         => 'required',
-        'thn_ajaran'    => 'required'
+        'ID_pengampu'   => 'required'
     ];
     protected $validationMessages   = [
         'nim'           => ['required' => 'NIM tidak boleh kosong'],
-        'kode_matkul'   => ['required' => 'Kode matakuliah tidak boleh kosong'],
-        'kelas'         => ['required' => 'Kelas tidak boleh kosong'],
-        'thn_ajaran'    => ['required' => 'Tahun ajaran tidak boleh kosong'],
+        'ID_pengampu'   => ['required' => 'Pengampu matakuliah tidak boleh kosong']
     ];
     // protected $skipValidation       = false;
     // protected $cleanValidationRules = true;

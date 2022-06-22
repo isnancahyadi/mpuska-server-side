@@ -89,4 +89,9 @@ class Khs extends BaseController
         $builder = $this->db->table('asesmen');
         $builder->updateBatch($batchData, 'ID_asesmen');
     }
+
+    public function createAssessment()
+    {
+        $post = $this->request->getPost();
+    }
 }
