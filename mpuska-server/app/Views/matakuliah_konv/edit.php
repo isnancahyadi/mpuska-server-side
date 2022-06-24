@@ -1,27 +1,27 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Update Data Matakuliah MBKM &mdash; Mpuska</title>
+<title>Update Data Matakuliah Konversi &mdash; Mpuska</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
     <div class="section-header">
         <div class="section-header-back">
-            <a href="<?= site_url('matakuliah/tampil') ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+            <a href="<?= site_url('matakuliahkonv/tampil') ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
         </div>
-        <h1>Update Data Matakuliah MBKM</h1>
+        <h1>Update Data Matakuliah Konversi</h1>
     </div>
 
     <div class="section-body">
         <div class="card">
             <div class="card-header">
-                <h4>Edit Data Matakuliah MBKM</h4>
+                <h4>Edit Data Matakuliah Konversi</h4>
             </div>
             <div class="card-body col-md-6">
                 <?php $validation = \Config\Services::validation() ?>
                 <?php foreach ($matkul as $key => $value) : ?>
-                    <form action="<?= site_url('matakuliah/update/' . $value->kode_matkul) ?>" method="POST" autocomplete="off">
+                    <form action="<?= site_url('matakuliahkonv/update/' . $value->kode_matkul) ?>" method="POST" autocomplete="off">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">

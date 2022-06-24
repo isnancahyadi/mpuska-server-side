@@ -43,7 +43,7 @@
                             <option value="" hidden></option>
                             <?php foreach ($dosen as $key => $value) : ?>
                                 <option value="<?= $value->niy_nip ?>" <?= old('niy_nip') == $value->niy_nip ? 'selected' : null ?>>
-                                    <?= $value->nama_depan . " " . $value->nama_tengah . " " . $value->nama_belakang ?>
+                                    <?= $value->gelar_depan == '' ? $value->nama_depan . " " . $value->nama_tengah . " " . $value->nama_belakang . ", " . $value->gelar_belakang : $value->gelar_depan . " " . $value->nama_depan . " " . $value->nama_tengah . " " . $value->nama_belakang . ", " . $value->gelar_belakang ?>
                                 </option>
                             <?php endforeach ?>
                             <div class="invalid-feedback">

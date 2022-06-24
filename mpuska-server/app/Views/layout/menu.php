@@ -21,7 +21,7 @@
         <li><a class="nav-link" href="<?= site_url('matakuliah/tampil') ?>">Matakuliah MBKM</a></li>
     </ul>
     <ul class="dropdown-menu">
-        <li><a class="nav-link" href="#">Matakuliah Konversi</a></li>
+        <li><a class="nav-link" href="<?= site_url('matakuliahkonv/tampil') ?>">Matakuliah Konversi</a></li>
     </ul>
     <ul class="dropdown-menu">
         <li><a class="nav-link" href="<?= site_url('pengampu/tampil') ?>">Pengampu</a></li>

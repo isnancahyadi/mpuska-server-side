@@ -1,15 +1,15 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Matakuliah MBKM &mdash; Mpuska</title>
+<title>Matakuliah Konversi &mdash; Mpuska</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
     <div class="section-header">
-        <h1>Matakuliah MBKM</h1>
+        <h1>Matakuliah Konversi</h1>
         <div class="section-header-button">
-            <a href="<?= site_url('matakuliah/add') ?>" class="btn btn-primary">Add New</a>
+            <a href="<?= site_url('matakuliahkonv/add') ?>" class="btn btn-primary">Add New</a>
         </div>
     </div>
 
@@ -35,7 +35,7 @@
     <div class="section-body">
         <div class="card">
             <div class="card-header">
-                <h4>Data Matakuliah MBKM</h4>
+                <h4>Data Matakuliah Konversi</h4>
             </div>
             <div class="card-body table-responsive">
                 <table class="table table-striped table-md" id="table1">
@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach (json_decode($matkul) as $key => $value) : ?>
+                        <?php foreach (json_decode($matkul_konv) as $key => $value) : ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $value->kode_matkul ?></td>
@@ -60,8 +60,8 @@
                                 <td><?= $value->sks ?></td>
                                 <td><?= $value->prodi ?></td>
                                 <td class="text-center" style="width: 15%">
-                                    <a href="<?= site_url('matakuliah/edit/' . $value->kode_matkul) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                    <form action="<?= site_url('matakuliah/delete/' . $value->kode_matkul) ?>" method="POST" class="d-inline" id="del-<?= $value->kode_matkul ?>">
+                                    <a href="<?= site_url('matakuliahkonv/edit/' . $value->kode_matkul) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <form action="<?= site_url('matakuliahkonv/delete/' . $value->kode_matkul) ?>" method="POST" class="d-inline" id="del-<?= $value->kode_matkul ?>">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda yakin?" data-confirm-yes="submitDel(<?= $value->kode_matkul ?>)">

@@ -1,27 +1,27 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Tambah Data Matakuliah MBKM &mdash; Mpuska</title>
+<title>Tambah Data Matakuliah Konversi &mdash; Mpuska</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
     <div class="section-header">
         <div class="section-header-back">
-            <a href="<?= site_url('matakuliah/tampil') ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+            <a href="<?= site_url('matakuliahkonv/tampil') ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
         </div>
-        <h1>Tambah Data Matakuliah MBKM</h1>
+        <h1>Tambah Data Matakuliah Konversi</h1>
     </div>
 
     <div class="section-body">
         <div class="card">
             <div class="card-header">
-                <h4>Buat Data Matakuliah MBKM Baru</h4>
+                <h4>Buat Data Matakuliah Konversi Baru</h4>
             </div>
             <div class="card-body col-md-6">
                 <?php $validation = \Config\Services::validation() ?>
                 <?php $errors = session()->getFlashdata('errors') ?>
-                <form action="<?= site_url('matakuliah/store') ?>" method="POST" autocomplete="off">
+                <form action="<?= site_url('matakuliahkonv/store') ?>" method="POST" autocomplete="off">
                     <?= csrf_field() ?>
                     <div class="form-group">
                         <label>Kode *</label>
