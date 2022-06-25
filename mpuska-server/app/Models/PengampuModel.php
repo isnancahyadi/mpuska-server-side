@@ -63,7 +63,7 @@ class PengampuModel extends Model
     function getDataPengampu()
     {
         $builder = $this->db->table('pengampu');
-        $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, pengampu.kelas, pengampu.thn_ajaran');
+        $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.kode_matkul, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.gelar_depan, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, ca_nama_dosen.gelar_belakang, pengampu.kelas, pengampu.thn_ajaran');
         $builder->join('dosen', 'dosen.niy_nip = pengampu.niy_nip');
         $builder->join('ca_nama_dosen', 'dosen.niy_nip = ca_nama_dosen.niy_nip');
         $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
@@ -87,7 +87,7 @@ class PengampuModel extends Model
     function getSpecifiedDataPengampu($id)
     {
         $builder = $this->db->table('pengampu');
-        $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.kode_matkul, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, pengampu.kelas, pengampu.thn_ajaran');
+        $builder->select('pengampu.ID_pengampu, matakuliah.nama, matakuliah.kode_matkul, matakuliah.semester, matakuliah.sks, matakuliah.prodi, ca_nama_dosen.gelar_depan, ca_nama_dosen.nama_depan, ca_nama_dosen.nama_tengah, ca_nama_dosen.nama_belakang, ca_nama_dosen.gelar_belakang, pengampu.kelas, pengampu.thn_ajaran');
         $builder->join('dosen', 'dosen.niy_nip = pengampu.niy_nip');
         $builder->join('ca_nama_dosen', 'dosen.niy_nip = ca_nama_dosen.niy_nip');
         $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
