@@ -49,20 +49,35 @@ class KrsModel extends Model
     function getAll()
     {
         $builder = $this->db->table('krs');
+        $builder->select('krs.ID_krs, mahasiswa.nim, ca_nama_mahasiswa.nama_depan as nama_depan_mahasiswa, ca_nama_mahasiswa.nama_tengah as nama_tengah_mahasiswa, ca_nama_mahasiswa.nama_belakang as nama_belakang_mahasiswa, mahasiswa.gender, mahasiswa.no_hp, mahasiswa.email, mahasiswa.nama_tim, 
+                            matakuliah.kode_matkul, matakuliah.nama, matakuliah.semester, matakuliah.sks, matakuliah.prodi,
+                            dosen.niy_nip, ca_nama_dosen.gelar_depan, ca_nama_dosen.nama_depan as nama_depan_dosen, ca_nama_dosen.nama_tengah as nama_tengah_dosen, ca_nama_dosen.nama_belakang as nama_belakang_dosen, ca_nama_dosen.gelar_belakang,
+                            pengampu.kelas, pengampu.thn_ajaran');
         $builder->join('mahasiswa', 'mahasiswa.nim = krs.nim');
-        $builder->join('matakuliah', 'matakuliah.kode_matkul = krs.kode_matkul');
+        $builder->join('ca_nama_mahasiswa', 'ca_nama_mahasiswa.nim = mahasiswa.nim');
+        $builder->join('pengampu', 'pengampu.ID_pengampu = krs.ID_pengampu');
+        $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
+        $builder->join('dosen', 'dosen.niy_nip = pengampu.niy_nip');
+        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy_nip = dosen.niy_nip');
 
         $query = $builder->get();
         return $query->getResult();
     }
 
-    function getSpecified($kode_matkul, $kelas)
+    function getSpecified($id)
     {
         $builder = $this->db->table('krs');
+        $builder->select('krs.ID_krs, mahasiswa.nim, ca_nama_mahasiswa.nama_depan as nama_depan_mahasiswa, ca_nama_mahasiswa.nama_tengah as nama_tengah_mahasiswa, ca_nama_mahasiswa.nama_belakang as nama_belakang_mahasiswa, mahasiswa.gender, mahasiswa.no_hp, mahasiswa.email, mahasiswa.nama_tim, 
+                            matakuliah.kode_matkul, matakuliah.nama, matakuliah.semester, matakuliah.sks, matakuliah.prodi,
+                            dosen.niy_nip, ca_nama_dosen.gelar_depan, ca_nama_dosen.nama_depan as nama_depan_dosen, ca_nama_dosen.nama_tengah as nama_tengah_dosen, ca_nama_dosen.nama_belakang as nama_belakang_dosen, ca_nama_dosen.gelar_belakang,
+                            pengampu.kelas, pengampu.thn_ajaran');
         $builder->join('mahasiswa', 'mahasiswa.nim = krs.nim');
-        $builder->join('matakuliah', 'matakuliah.kode_matkul = krs.kode_matkul');
-        $builder->where('krs.kode_matkul', $kode_matkul);
-        $builder->where('krs.kelas', $kelas);
+        $builder->join('ca_nama_mahasiswa', 'ca_nama_mahasiswa.nim = mahasiswa.nim');
+        $builder->join('pengampu', 'pengampu.ID_pengampu = krs.ID_pengampu');
+        $builder->join('matakuliah', 'matakuliah.kode_matkul = pengampu.kode_matkul');
+        $builder->join('dosen', 'dosen.niy_nip = pengampu.niy_nip');
+        $builder->join('ca_nama_dosen', 'ca_nama_dosen.niy_nip = dosen.niy_nip');
+        $builder->where('krs.ID_pengampu', $id);
 
         $query = $builder->get();
         return $query->getResult();

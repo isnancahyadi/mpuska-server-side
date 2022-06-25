@@ -19,7 +19,8 @@ class Krs extends ResourceController
      */
     public function index()
     {
-        //
+        $data = $this->krs->getAll();
+        return $this->respond($data);
     }
 
     /**
@@ -27,9 +28,9 @@ class Krs extends ResourceController
      *
      * @return mixed
      */
-    public function show($kode_matkul = null, $kelas = null)
+    public function show($id = null)
     {
-        $data = $this->krs->getSpecified($kode_matkul, $kelas);
+        $data = $this->krs->getSpecified($id);
         return $this->respond($data);
     }
 
