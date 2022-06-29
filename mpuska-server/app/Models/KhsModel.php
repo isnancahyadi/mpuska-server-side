@@ -76,6 +76,24 @@ class KhsModel extends Model
         return $query->getResult();
     }
 
+    function getSpecifiedPengampu($id, $nim)
+    {
+        $builder = $this->db->table('khs');
+        $builder->select('khs.ID_khs AS id_khs, mahasiswa.nim AS nim, ca_nama_mahasiswa.nama_depan AS nm_dpn_mhs, ca_nama_mahasiswa.nama_tengah AS nm_tgh_mhs, ca_nama_mahasiswa.nama_belakang AS nm_blk_mhs, matakuliah.kode_matkul AS kode_matkul, matakuliah.nama AS matkul_diambil, ca_nama_dosen.gelar_depan AS gl_dpn_dos, ca_nama_dosen.nama_depan AS nm_dpn_dos, ca_nama_dosen.nama_tengah AS nm_tgh_dos, ca_nama_dosen.nama_belakang AS nm_blk_dos, ca_nama_dosen.gelar_belakang AS gl_blk_dos, matakuliah.semester AS semester, matakuliah.sks AS sks, matakuliah.prodi AS prodi, pengampu.kelas AS kelas, pengampu.thn_ajaran AS thn_ajaran, khs.nilai AS nilai, khs.grade');
+        $builder->join('krs', 'khs.ID_krs = krs.ID_krs');
+        $builder->join('mahasiswa', 'krs.nim = mahasiswa.nim');
+        $builder->join('ca_nama_mahasiswa', 'ca_nama_mahasiswa.nim = mahasiswa.nim');
+        $builder->join('pengampu', 'krs.ID_pengampu = pengampu.ID_pengampu');
+        $builder->join('matakuliah', 'pengampu.kode_matkul = matakuliah.kode_matkul');
+        $builder->join('dosen', 'pengampu.niy_nip = dosen.niy_nip');
+        $builder->join('ca_nama_dosen', 'dosen.niy_nip = ca_nama_dosen.niy_nip');
+        $builder->where('pengampu.ID_pengampu', $id);
+        $builder->where('mahasiswa.nim', $nim);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     function getMhs($id, $kode_matkul, $kelas, $thn_ajaran)
     {
         $builder = $this->db->table('khs');

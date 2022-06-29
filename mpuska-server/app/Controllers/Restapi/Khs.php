@@ -29,6 +29,14 @@ class Khs extends BaseController
         return $this->respond($data);
     }
 
+    public function getListKhsMhs($id = null)
+    {
+        $post = $this->request->getPost();
+
+        $data = $this->khs->getSpecifiedPengampu($id, $post['nim']);
+        return $this->respond($data);
+    }
+
     public function getScoreMhs($id = null)
     {
         $post = $this->request->getPost();
