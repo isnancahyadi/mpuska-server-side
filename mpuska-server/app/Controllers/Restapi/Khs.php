@@ -47,9 +47,9 @@ class Khs extends BaseController
 
     public function getAssessment($id = null)
     {
-        $post = $this->request->getPost();
+        //$post = $this->request->getPost();
 
-        $data = $this->khs->getAssessment($id, $post['kode_matkul'], $post['kelas'], $post['thn_ajaran']);
+        $data = $this->khs->getAssessment($id);
         return $this->respond($data);
     }
 

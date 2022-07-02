@@ -134,19 +134,23 @@ class KhsModel extends Model
         return $query->getResult();
     }
 
-    function getAssessment($id, $kode_matkul, $kelas, $thn_ajaran)
+    function getAssessment($id)
     {
         $builder = $this->db->table('asesmen');
-        $builder->select('asesmen.ID_asesmen, asesmen.nama, khs.bobot');
-        $builder->join('khs', 'asesmen.ID_asesmen = khs.ID_asesmen');
-        $builder->join('krs', 'khs.ID_krs = krs.ID_krs');
+        $builder->select('asesmen.ID_asesmen, asesmen.nama, nilai.bobot');
+        $builder->join('nilai', 'asesmen.ID_asesmen = nilai.ID_asesmen');
+        $builder->join('krs', 'nilai.ID_krs = krs.ID_krs');
         $builder->join('pengampu', 'krs.ID_pengampu = pengampu.ID_pengampu');
-        $builder->join('matakuliah', 'pengampu.kode_matkul = matakuliah.kode_matkul');
-        $builder->join('dosen', 'pengampu.niy_nip = dosen.niy_nip');
-        $builder->where('dosen.niy_nip', $id);
-        $builder->where('pengampu.kode_matkul', $kode_matkul);
-        $builder->where('pengampu.kelas', $kelas);
-        $builder->where('pengampu.thn_ajaran', $thn_ajaran);
+        $builder->where('pengampu.ID_pengampu', $id);
+        // $builder->join('khs', 'asesmen.ID_asesmen = khs.ID_asesmen');
+        // $builder->join('krs', 'khs.ID_krs = krs.ID_krs');
+        // $builder->join('pengampu', 'krs.ID_pengampu = pengampu.ID_pengampu');
+        // $builder->join('matakuliah', 'pengampu.kode_matkul = matakuliah.kode_matkul');
+        // $builder->join('dosen', 'pengampu.niy_nip = dosen.niy_nip');
+        // $builder->where('dosen.niy_nip', $id);
+        // $builder->where('pengampu.kode_matkul', $kode_matkul);
+        // $builder->where('pengampu.kelas', $kelas);
+        // $builder->where('pengampu.thn_ajaran', $thn_ajaran);
         $builder->groupBy('asesmen.ID_asesmen');
 
         $query = $builder->get();
