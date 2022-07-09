@@ -53,6 +53,12 @@ class Khs extends BaseController
         return $this->respond($data);
     }
 
+    public function getAllAssessment()
+    {
+        $data = $this->khs->getAllAssessment();
+        return $this->respond($data);
+    }
+
     public function getcpl($id = null)
     {
         $data = $this->khs->getcpl($id);

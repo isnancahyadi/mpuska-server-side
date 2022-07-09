@@ -157,6 +157,14 @@ class KhsModel extends Model
         return $query->getResult();
     }
 
+    function getAllAssessment()
+    {
+        $builder = $this->db->table('asesmen');
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     function getcpl($id)
     {
         $builder = $this->db->table('cpl');

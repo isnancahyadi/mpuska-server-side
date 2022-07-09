@@ -51,6 +51,7 @@ $routes->get('restapi/khs/getcpmk/(:num)', 'RestApi\Khs::getcpmk/$1');
 $routes->put('restapi/khs/updatescoremhs/(:num)', 'RestApi\Khs::updateScoreMhs/$1');
 $routes->put('restapi/khs/updateassessments', 'RestApi\Khs::updateAssessments');
 $routes->post('restapi/khs/getlistkhsmhs/(:num)', 'RestApi\Khs::getListKhsMhs/$1');
+$routes->get('restapi/khs/getallassessment', 'RestApi\Khs::getAllAssessment');
 
 /*
  * --------------------------------------------------------------------
