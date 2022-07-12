@@ -178,4 +178,9 @@ class KhsModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function addAssessment($var)
+    {
+        # code...
+    }
 }

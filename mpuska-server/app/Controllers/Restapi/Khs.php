@@ -98,8 +98,23 @@ class Khs extends BaseController
         $builder->updateBatch($batchData, 'ID_asesmen');
     }
 
-    public function createAssessment()
+    public function addAssessment($id = null)
     {
         $post = $this->request->getPost();
+
+        $queryGetIdKrs = $this->db->table('krs')->select('ID_krs')->getWhere(['ID_pengampu' => $id]);
+
+        foreach ($queryGetIdKrs->getResultArray() as $key) {
+            $batchData[] = [
+                'ID_krs' => $key['ID_krs'],
+                'ID_asesmen' => (int)$post['ID_asesmen'],
+                'bobot' => (int)$post['bobot']
+            ];
+        }
+
+        $builder = $this->db->table('nilai');
+        $builder->insertBatch($batchData);
+
+        return $this->respondCreated('Data berhasil ditambahkan');
     }
 }
