@@ -151,7 +151,7 @@ class KhsModel extends Model
         // $builder->where('pengampu.kode_matkul', $kode_matkul);
         // $builder->where('pengampu.kelas', $kelas);
         // $builder->where('pengampu.thn_ajaran', $thn_ajaran);
-        $builder->groupBy('asesmen.ID_asesmen');
+        $builder->groupBy('nilai.ID_asesmen');
 
         $query = $builder->get();
         return $query->getResult();
@@ -177,10 +177,5 @@ class KhsModel extends Model
 
         $query = $builder->get();
         return $query->getResult();
-    }
-
-    function addAssessment($var)
-    {
-        # code...
     }
 }
