@@ -137,7 +137,7 @@ class KhsModel extends Model
     function getAssessment($id)
     {
         $builder = $this->db->table('asesmen');
-        $builder->select('asesmen.ID_asesmen, asesmen.nama, nilai.bobot');
+        $builder->select('nilai.KEY_nilai, asesmen.ID_asesmen, asesmen.nama, nilai.bobot');
         $builder->join('nilai', 'asesmen.ID_asesmen = nilai.ID_asesmen');
         $builder->join('krs', 'nilai.ID_krs = krs.ID_krs');
         $builder->join('pengampu', 'krs.ID_pengampu = pengampu.ID_pengampu');

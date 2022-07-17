@@ -82,30 +82,61 @@ class Khs extends BaseController
         $builder->updateBatch($batchData, 'ID_asesmen');
     }
 
-    public function updateAssessments()
+    public function updateAssessments($id = null)
     {
         $data = $this->request->getRawInput();
 
-        foreach ($data['ID_asesmen'] as $key => $value) {
-            $batchData[] = [
-                'ID_asesmen' => (int)$data['ID_asesmen'][$key],
-                'nama' => $data['nama'][$key],
-                'bobot' => (int)$data['bobot'][$key]
-            ];
+        // foreach ($data['ID_asesmen'] as $key => $value) {
+        //     $batchData[] = [
+        //         'ID_asesmen' => (int)$data['ID_asesmen'][$key],
+        //         'nama' => $data['nama'][$key],
+        //         'bobot' => (int)$data['bobot'][$key]
+        //     ];
+        // }
+
+        // $builder = $this->db->table('asesmen');
+        // $builder->updateBatch($batchData, 'ID_asesmen');
+
+        $queryGetIdKrs = $this->db->table('krs')->select('ID_krs')->getWhere(['ID_pengampu' => $id]);
+
+        foreach ($queryGetIdKrs->getResultArray() as $key) {
+            foreach ($data['ID_asesmen'] as $k => $value) {
+                $batchData[] = [
+                    'KEY_nilai' => (int)$data['KEY_nilai'][$k],
+                    'ID_asesmen' => (int)$data['ID_asesmen'][$k],
+                    'bobot' => (int)$data['bobot'][$k]
+                ];
+            }
         }
 
-        $builder = $this->db->table('asesmen');
-        $builder->updateBatch($batchData, 'ID_asesmen');
+        $builder = $this->db->table('nilai');
+        $builder->updateBatch($batchData, 'KEY_nilai');
+
+        return $this->respondUpdated('Data berhasil diupdate');
     }
 
     public function addAssessment($id = null)
     {
         $post = $this->request->getPost();
 
+        $maxKeyScore = $this->db->table('nilai')->selectMax('KEY_nilai')->get();
+        $queryKeyScore = $maxKeyScore->getRow();
+
+        $findKeyScore = $this->db->table('nilai')->select('KEY_nilai')->get()->getResult();
+
+        $kScore = 0;
+
+        if ($findKeyScore == null) {
+            $kScore = 1;
+        } else {
+            $kScore = $queryKeyScore->KEY_nilai + 1;
+        }
+
         $queryGetIdKrs = $this->db->table('krs')->select('ID_krs')->getWhere(['ID_pengampu' => $id]);
 
         foreach ($queryGetIdKrs->getResultArray() as $key) {
             $batchData[] = [
+                'KEY_nilai' => $kScore,
                 'ID_krs' => $key['ID_krs'],
                 'ID_asesmen' => (int)$post['ID_asesmen'],
                 'bobot' => (int)$post['bobot']
