@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2022 at 11:27 AM
+-- Generation Time: Jul 17, 2022 at 06:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -33,6 +33,13 @@ CREATE TABLE `akun` (
   `password` varchar(125) NOT NULL,
   `hak_akses` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`ID_akun`, `username`, `password`, `hak_akses`) VALUES
+(1, '12345678', '$2y$10$4Qu.iaQzUE3lCf068kG.LOy2wGGf6MVVMZYzHMKTPuGFpTPE2/MHu', '1');
 
 --
 -- Triggers `akun`
@@ -69,7 +76,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `asesmen` (
-  `ID_asesmen` varchar(3) NOT NULL,
+  `ID_asesmen` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -78,12 +85,14 @@ CREATE TABLE `asesmen` (
 --
 
 INSERT INTO `asesmen` (`ID_asesmen`, `nama`) VALUES
-('KHD', 'Kehadiran'),
-('KTF', 'Keaktifan'),
-('QZ', 'Quiz'),
-('TGS', 'Tugas'),
-('UAS', 'Ujian Akhir Semester'),
-('UTS', 'Ujian Tengah Semester');
+(1, 'Kehadiran'),
+(2, 'Keaktifan'),
+(3, 'Quiz'),
+(4, 'Tugas'),
+(5, 'Ujian Akhir Semester'),
+(6, 'Ujian Tengah Semester'),
+(7, 'Uji Kompetensi'),
+(8, 'Presentasi');
 
 -- --------------------------------------------------------
 
@@ -206,6 +215,14 @@ CREATE TABLE `cpl` (
   `cpl` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cpl`
+--
+
+INSERT INTO `cpl` (`kode_matkul`, `cpl`) VALUES
+('211840131', 'aaaaa bbb ccccc ddd'),
+('211840131', 'eeeeeee ff gggg hhhhh');
+
 -- --------------------------------------------------------
 
 --
@@ -216,6 +233,15 @@ CREATE TABLE `cpmk` (
   `kode_matkul` varchar(9) NOT NULL,
   `cpmk` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cpmk`
+--
+
+INSERT INTO `cpmk` (`kode_matkul`, `cpmk`) VALUES
+('211840131', 'zzzzz yy xxxxxx wwww'),
+('211840131', 'vvv uuuuuu ttt ss rrrrrrrrrr'),
+('211840131', 'qqqqqqq pp oooo nnnnn mmm');
 
 -- --------------------------------------------------------
 
@@ -239,7 +265,7 @@ CREATE TABLE `dosen` (
 
 INSERT INTO `dosen` (`niy_nip`, `gender`, `no_hp`, `email`, `foto`, `status_mbkm`, `ID_akun`) VALUES
 ('060150842', '0', '', 'dewi.ismi@tif.uad.ac.id', NULL, '0', NULL),
-('12345678', '1', '082111336643', 'isnan@tif.uad.ac.id', NULL, '0', NULL),
+('12345678', '1', '082111336643', 'isnan@tif.uad.ac.id', NULL, '1', 1),
 ('197002062005011001', '1', '', 'ekoab@tif.uad.ac.id', NULL, '0', NULL),
 ('197310142005011001', '1', '', 'alitarmuji@tif.uad.ac.id', NULL, '0', NULL),
 ('197608192005012001', '0', '', 'rochmahdyah@tif.uad.ac.id', NULL, '0', NULL),
@@ -301,14 +327,14 @@ CREATE TABLE `khs` (
   `ID_khs` int(11) NOT NULL,
   `ID_krs` int(11) NOT NULL,
   `nilai` int(3) NOT NULL DEFAULT 0,
-  `huruf` varchar(2) NOT NULL DEFAULT 'E'
+  `grade` varchar(2) NOT NULL DEFAULT 'E'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `khs`
 --
 
-INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `huruf`) VALUES
+INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `grade`) VALUES
 (1, 8, 0, 'E'),
 (2, 9, 0, 'E'),
 (3, 10, 0, 'E'),
@@ -599,11 +625,158 @@ INSERT INTO `matakuliah_konv` (`kode_matkul`, `nama`, `semester`, `sks`, `prodi`
 --
 
 CREATE TABLE `nilai` (
+  `KEY_nilai` int(11) NOT NULL,
   `ID_krs` int(11) NOT NULL,
-  `ID_asesmen` varchar(3) NOT NULL,
+  `ID_asesmen` int(11) NOT NULL,
   `bobot` int(3) NOT NULL,
   `nilai` int(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALUES
+(1, 8, 1, 15, 0),
+(1, 9, 1, 15, 0),
+(1, 10, 1, 15, 0),
+(1, 11, 1, 15, 0),
+(1, 12, 1, 15, 0),
+(1, 13, 1, 15, 0),
+(1, 14, 1, 15, 0),
+(1, 15, 1, 15, 0),
+(1, 16, 1, 15, 0),
+(1, 17, 1, 15, 0),
+(1, 18, 1, 15, 0),
+(1, 19, 1, 15, 0),
+(1, 20, 1, 15, 0),
+(1, 21, 1, 15, 0),
+(1, 22, 1, 15, 0),
+(1, 23, 1, 15, 0),
+(1, 24, 1, 15, 0),
+(1, 25, 1, 15, 0),
+(1, 26, 1, 15, 0),
+(1, 27, 1, 15, 0),
+(1, 28, 1, 15, 0),
+(1, 29, 1, 15, 0),
+(1, 30, 1, 15, 0),
+(1, 31, 1, 15, 0),
+(1, 32, 1, 15, 0),
+(1, 33, 1, 15, 0),
+(1, 34, 1, 15, 0),
+(1, 35, 1, 15, 0),
+(1, 36, 1, 15, 0),
+(1, 37, 1, 15, 0),
+(1, 38, 1, 15, 0),
+(1, 39, 1, 15, 0),
+(1, 40, 1, 15, 0),
+(1, 41, 1, 15, 0),
+(1, 42, 1, 15, 0),
+(2, 8, 3, 20, 0),
+(2, 9, 3, 20, 0),
+(2, 10, 3, 20, 0),
+(2, 11, 3, 20, 0),
+(2, 12, 3, 20, 0),
+(2, 13, 3, 20, 0),
+(2, 14, 3, 20, 0),
+(2, 15, 3, 20, 0),
+(2, 16, 3, 20, 0),
+(2, 17, 3, 20, 0),
+(2, 18, 3, 20, 0),
+(2, 19, 3, 20, 0),
+(2, 20, 3, 20, 0),
+(2, 21, 3, 20, 0),
+(2, 22, 3, 20, 0),
+(2, 23, 3, 20, 0),
+(2, 24, 3, 20, 0),
+(2, 25, 3, 20, 0),
+(2, 26, 3, 20, 0),
+(2, 27, 3, 20, 0),
+(2, 28, 3, 20, 0),
+(2, 29, 3, 20, 0),
+(2, 30, 3, 20, 0),
+(2, 31, 3, 20, 0),
+(2, 32, 3, 20, 0),
+(2, 33, 3, 20, 0),
+(2, 34, 3, 20, 0),
+(2, 35, 3, 20, 0),
+(2, 36, 3, 20, 0),
+(2, 37, 3, 20, 0),
+(2, 38, 3, 20, 0),
+(2, 39, 3, 20, 0),
+(2, 40, 3, 20, 0),
+(2, 41, 3, 20, 0),
+(2, 42, 3, 20, 0),
+(3, 8, 6, 30, 0),
+(3, 9, 6, 30, 0),
+(3, 10, 6, 30, 0),
+(3, 11, 6, 30, 0),
+(3, 12, 6, 30, 0),
+(3, 13, 6, 30, 0),
+(3, 14, 6, 30, 0),
+(3, 15, 6, 30, 0),
+(3, 16, 6, 30, 0),
+(3, 17, 6, 30, 0),
+(3, 18, 6, 30, 0),
+(3, 19, 6, 30, 0),
+(3, 20, 6, 30, 0),
+(3, 21, 6, 30, 0),
+(3, 22, 6, 30, 0),
+(3, 23, 6, 30, 0),
+(3, 24, 6, 30, 0),
+(3, 25, 6, 30, 0),
+(3, 26, 6, 30, 0),
+(3, 27, 6, 30, 0),
+(3, 28, 6, 30, 0),
+(3, 29, 6, 30, 0),
+(3, 30, 6, 30, 0),
+(3, 31, 6, 30, 0),
+(3, 32, 6, 30, 0),
+(3, 33, 6, 30, 0),
+(3, 34, 6, 30, 0),
+(3, 35, 6, 30, 0),
+(3, 36, 6, 30, 0),
+(3, 37, 6, 30, 0),
+(3, 38, 6, 30, 0),
+(3, 39, 6, 30, 0),
+(3, 40, 6, 30, 0),
+(3, 41, 6, 30, 0),
+(3, 42, 6, 30, 0),
+(4, 8, 5, 35, 0),
+(4, 9, 5, 35, 0),
+(4, 10, 5, 35, 0),
+(4, 11, 5, 35, 0),
+(4, 12, 5, 35, 0),
+(4, 13, 5, 35, 0),
+(4, 14, 5, 35, 0),
+(4, 15, 5, 35, 0),
+(4, 16, 5, 35, 0),
+(4, 17, 5, 35, 0),
+(4, 18, 5, 35, 0),
+(4, 19, 5, 35, 0),
+(4, 20, 5, 35, 0),
+(4, 21, 5, 35, 0),
+(4, 22, 5, 35, 0),
+(4, 23, 5, 35, 0),
+(4, 24, 5, 35, 0),
+(4, 25, 5, 35, 0),
+(4, 26, 5, 35, 0),
+(4, 27, 5, 35, 0),
+(4, 28, 5, 35, 0),
+(4, 29, 5, 35, 0),
+(4, 30, 5, 35, 0),
+(4, 31, 5, 35, 0),
+(4, 32, 5, 35, 0),
+(4, 33, 5, 35, 0),
+(4, 34, 5, 35, 0),
+(4, 35, 5, 35, 0),
+(4, 36, 5, 35, 0),
+(4, 37, 5, 35, 0),
+(4, 38, 5, 35, 0),
+(4, 39, 5, 35, 0),
+(4, 40, 5, 35, 0),
+(4, 41, 5, 35, 0),
+(4, 42, 5, 35, 0);
 
 -- --------------------------------------------------------
 
@@ -748,7 +921,13 @@ ALTER TABLE `pengampu`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `ID_akun` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `asesmen`
+--
+ALTER TABLE `asesmen`
+  MODIFY `ID_asesmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `khs`
