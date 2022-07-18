@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2022 at 06:32 AM
+-- Generation Time: Jul 18, 2022 at 03:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -326,7 +326,7 @@ DELIMITER ;
 CREATE TABLE `khs` (
   `ID_khs` int(11) NOT NULL,
   `ID_krs` int(11) NOT NULL,
-  `nilai` int(3) NOT NULL DEFAULT 0,
+  `nilai` float NOT NULL DEFAULT 0,
   `grade` varchar(2) NOT NULL DEFAULT 'E'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -335,14 +335,14 @@ CREATE TABLE `khs` (
 --
 
 INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `grade`) VALUES
-(1, 8, 0, 'E'),
+(1, 8, 83, 'A'),
 (2, 9, 0, 'E'),
 (3, 10, 0, 'E'),
 (4, 11, 0, 'E'),
 (5, 12, 0, 'E'),
 (6, 13, 0, 'E'),
 (7, 14, 0, 'E'),
-(8, 15, 0, 'E'),
+(8, 15, 80.5, 'A'),
 (9, 16, 0, 'E'),
 (10, 17, 0, 'E'),
 (11, 18, 0, 'E'),
@@ -364,7 +364,7 @@ INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `grade`) VALUES
 (27, 34, 0, 'E'),
 (28, 35, 0, 'E'),
 (29, 36, 0, 'E'),
-(30, 37, 0, 'E'),
+(30, 37, 76.5, 'A-'),
 (31, 38, 0, 'E'),
 (32, 39, 0, 'E'),
 (33, 40, 0, 'E'),
@@ -629,7 +629,7 @@ CREATE TABLE `nilai` (
   `ID_krs` int(11) NOT NULL,
   `ID_asesmen` int(11) NOT NULL,
   `bobot` int(3) NOT NULL,
-  `nilai` int(3) NOT NULL DEFAULT 0
+  `nilai` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -637,14 +637,14 @@ CREATE TABLE `nilai` (
 --
 
 INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALUES
-(1, 8, 1, 15, 0),
+(1, 8, 1, 15, 100),
 (1, 9, 1, 15, 0),
 (1, 10, 1, 15, 0),
 (1, 11, 1, 15, 0),
 (1, 12, 1, 15, 0),
 (1, 13, 1, 15, 0),
 (1, 14, 1, 15, 0),
-(1, 15, 1, 15, 0),
+(1, 15, 1, 15, 90),
 (1, 16, 1, 15, 0),
 (1, 17, 1, 15, 0),
 (1, 18, 1, 15, 0),
@@ -666,20 +666,20 @@ INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALU
 (1, 34, 1, 15, 0),
 (1, 35, 1, 15, 0),
 (1, 36, 1, 15, 0),
-(1, 37, 1, 15, 0),
+(1, 37, 1, 15, 95),
 (1, 38, 1, 15, 0),
 (1, 39, 1, 15, 0),
 (1, 40, 1, 15, 0),
 (1, 41, 1, 15, 0),
 (1, 42, 1, 15, 0),
-(2, 8, 3, 20, 0),
+(2, 8, 3, 20, 95),
 (2, 9, 3, 20, 0),
 (2, 10, 3, 20, 0),
 (2, 11, 3, 20, 0),
 (2, 12, 3, 20, 0),
 (2, 13, 3, 20, 0),
 (2, 14, 3, 20, 0),
-(2, 15, 3, 20, 0),
+(2, 15, 3, 20, 100),
 (2, 16, 3, 20, 0),
 (2, 17, 3, 20, 0),
 (2, 18, 3, 20, 0),
@@ -701,20 +701,20 @@ INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALU
 (2, 34, 3, 20, 0),
 (2, 35, 3, 20, 0),
 (2, 36, 3, 20, 0),
-(2, 37, 3, 20, 0),
+(2, 37, 3, 20, 75),
 (2, 38, 3, 20, 0),
 (2, 39, 3, 20, 0),
 (2, 40, 3, 20, 0),
 (2, 41, 3, 20, 0),
 (2, 42, 3, 20, 0),
-(3, 8, 6, 30, 0),
+(3, 8, 6, 30, 70),
 (3, 9, 6, 30, 0),
 (3, 10, 6, 30, 0),
 (3, 11, 6, 30, 0),
 (3, 12, 6, 30, 0),
 (3, 13, 6, 30, 0),
 (3, 14, 6, 30, 0),
-(3, 15, 6, 30, 0),
+(3, 15, 6, 30, 75),
 (3, 16, 6, 30, 0),
 (3, 17, 6, 30, 0),
 (3, 18, 6, 30, 0),
@@ -736,20 +736,20 @@ INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALU
 (3, 34, 6, 30, 0),
 (3, 35, 6, 30, 0),
 (3, 36, 6, 30, 0),
-(3, 37, 6, 30, 0),
+(3, 37, 6, 30, 70),
 (3, 38, 6, 30, 0),
 (3, 39, 6, 30, 0),
 (3, 40, 6, 30, 0),
 (3, 41, 6, 30, 0),
 (3, 42, 6, 30, 0),
-(4, 8, 5, 35, 0),
+(4, 8, 5, 35, 80),
 (4, 9, 5, 35, 0),
 (4, 10, 5, 35, 0),
 (4, 11, 5, 35, 0),
 (4, 12, 5, 35, 0),
 (4, 13, 5, 35, 0),
 (4, 14, 5, 35, 0),
-(4, 15, 5, 35, 0),
+(4, 15, 5, 35, 70),
 (4, 16, 5, 35, 0),
 (4, 17, 5, 35, 0),
 (4, 18, 5, 35, 0),
@@ -771,12 +771,38 @@ INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALU
 (4, 34, 5, 35, 0),
 (4, 35, 5, 35, 0),
 (4, 36, 5, 35, 0),
-(4, 37, 5, 35, 0),
+(4, 37, 5, 35, 75),
 (4, 38, 5, 35, 0),
 (4, 39, 5, 35, 0),
 (4, 40, 5, 35, 0),
 (4, 41, 5, 35, 0),
 (4, 42, 5, 35, 0);
+
+--
+-- Triggers `nilai`
+--
+DELIMITER $$
+CREATE TRIGGER `update_nilai_khs` AFTER UPDATE ON `nilai` FOR EACH ROW BEGIN
+	UPDATE khs
+    SET nilai = (SELECT SUM(nilai*(bobot/100)) FROM nilai WHERE khs.ID_krs = nilai.ID_krs),
+    grade = CASE
+    	WHEN nilai >= 0 AND nilai < 40.00 THEN "E"
+        WHEN nilai >= 40.00 AND nilai < 43.75 THEN "D"
+        WHEN nilai >= 43.75 AND nilai < 51.25 THEN "D+"
+        WHEN nilai >= 51.25 AND nilai < 55.00 THEN "C-"
+        WHEN nilai >= 55.00 AND nilai < 57.50 THEN "C"
+        WHEN nilai >= 57.50 AND nilai < 62.50 THEN "C+"
+        WHEN nilai >= 62.50 AND nilai < 65.00 THEN "B-"
+        WHEN nilai >= 65.00 AND nilai < 68.75 THEN "B"
+        WHEN nilai >= 68.75 AND nilai < 76.25 THEN "B+"
+        WHEN nilai >= 76.25 AND nilai < 80.00 THEN "A-"
+        WHEN nilai >= 80.00 AND nilai < 100.00 THEN "A"
+        ELSE "E"
+    END
+    WHERE khs.ID_krs = new.ID_krs;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
