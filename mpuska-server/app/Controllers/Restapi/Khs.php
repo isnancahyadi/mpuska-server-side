@@ -75,7 +75,7 @@ class Khs extends BaseController
             ];
         }
 
-        $builder = $this->db->table('khs');
+        $builder = $this->db->table('nilai');
         $builder->where('ID_krs', $id);
         $builder->updateBatch($batchData, 'ID_asesmen');
     }
