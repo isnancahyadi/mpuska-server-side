@@ -53,6 +53,7 @@ $routes->put('restapi/khs/updatescoremhs/(:num)', 'RestApi\Khs::updateScoreMhs/$
 $routes->put('restapi/khs/updateassessments/(:num)', 'RestApi\Khs::updateAssessments/$1');
 $routes->post('restapi/khs/getlistkhsmhs/(:num)', 'RestApi\Khs::getListKhsMhs/$1');
 $routes->post('restapi/khs/addassessment/(:num)', 'RestApi\Khs::addAssessment/$1');
+$routes->get('restapi/khs/searchcourse/(:num)', 'RestApi\Khs::searchCourse/$1');
 
 /*
  * --------------------------------------------------------------------

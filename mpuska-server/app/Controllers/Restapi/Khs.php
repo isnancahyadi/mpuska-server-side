@@ -146,4 +146,27 @@ class Khs extends BaseController
 
         return $this->respondCreated('Data berhasil ditambahkan');
     }
+
+    public function searchCourse($id)
+    {
+        //$post = $this->request->getPost();
+
+        $query = $this->db->table('konversi')->getWhere(['kode_matkul' => $id]);
+        $course = $query->getResult();
+
+        if ($id == null) {
+            return $this->fail('Tidak ada kode matkul');
+        } else {
+            if ($course) {
+                // $params = [
+                //     'kode_matkul' => $course->kode_matkul,
+                //     'kode_matkul_konv' => $course->kode_matkul_konv
+                // ];
+
+                return $this->respond($course, 200);
+            } else {
+                return $this->failNotFound('Kode matakuliah tidak ditemukan');
+            }
+        }
+    }
 }
