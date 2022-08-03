@@ -169,4 +169,20 @@ class Khs extends BaseController
             }
         }
     }
+
+    public function searchMhsInCourseConv($id)
+    {
+        $query = $this->db->table('khs_konv')->getWhere(['ID_krs' => (int)$id]);
+        $mhs = $query->getResult();
+
+        if ($id == null) {
+            return $this->fail('Tidak ada ID KRS');
+        } else {
+            if ($mhs) {
+                return $this->respond('ID KRS ditemukan', 200);
+            } else {
+                return $this->failNotFound('ID KRS tidak ditemukan');
+            }
+        }
+    }
 }
