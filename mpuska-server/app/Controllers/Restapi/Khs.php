@@ -191,4 +191,19 @@ class Khs extends BaseController
         $data = $this->khs->getSpecifiedKonversion($id);
         return $this->respond($data);
     }
+
+    public function addKhsConv()
+    {
+        $post = $this->request->getPost();
+
+        $data = [
+            'ID_krs' => (int) $post['ID_krs'],
+            'kode_matkul_konv' => $post['kode_matkul_konv']
+        ];
+
+        $builder = $this->db->table('khs_konv');
+        $builder->insert($data);
+
+        return $this->respondCreated('Data berhasil terkonversi');
+    }
 }
