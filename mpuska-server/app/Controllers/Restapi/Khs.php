@@ -185,4 +185,10 @@ class Khs extends BaseController
             }
         }
     }
+
+    public function getKonversion($id)
+    {
+        $data = $this->khs->getSpecifiedKonversion($id);
+        return $this->respond($data);
+    }
 }

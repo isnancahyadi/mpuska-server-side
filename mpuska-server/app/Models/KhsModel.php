@@ -175,4 +175,16 @@ class KhsModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getSpecifiedKonversion($id)
+    {
+        $builder = $this->db->table('matakuliah_konv');
+        $builder->select('matakuliah_konv.kode_matkul, matakuliah_konv.nama, matakuliah_konv.semester, matakuliah_konv.sks, matakuliah_konv.prodi');
+        $builder->join('konversi', 'konversi.kode_matkul_konv = matakuliah_konv.kode_matkul');
+        $builder->join('matakuliah', 'konversi.kode_matkul = matakuliah.kode_matkul');
+        $builder->where('konversi.kode_matkul', $id);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }
