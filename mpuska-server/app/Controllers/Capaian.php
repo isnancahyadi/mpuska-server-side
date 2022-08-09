@@ -24,4 +24,9 @@ class Capaian extends BaseController
 
         return view('pencapaian/index', (array)$response);
     }
+
+    public function add()
+    {
+        return view('pencapaian/new');
+    }
 }
