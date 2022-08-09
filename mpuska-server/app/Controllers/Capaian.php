@@ -29,4 +29,26 @@ class Capaian extends BaseController
     {
         return view('pencapaian/new');
     }
+
+    public function store()
+    {
+        $validate = $this->validate([
+            'cpl' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'CPL tidak boleh kosong'
+                ],
+            ],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
+
+        $data = $this->request->getPost();
+        $url = site_url('restapi/capaian');
+        akses_restapi('POST', $url, $data);
+
+        return redirect()->to(site_url('capaian/tampil'))->with('success', 'Data Berhasil Disimpan');
+    }
 }

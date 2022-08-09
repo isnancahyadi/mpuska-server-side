@@ -49,7 +49,15 @@ class Capaian extends ResourceController
      */
     public function create()
     {
-        //
+        $data = $this->request->getPost();
+
+        $this->cpl->insert($data);
+
+        if ($this->cpl->affectedRows() > 0) {
+            return $this->respondCreated('Data berhasil disimpan');
+        } else {
+            return $this->fail($this->cpl->errors());
+        }
     }
 
     /**
