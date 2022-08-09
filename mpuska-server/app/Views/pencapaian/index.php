@@ -55,7 +55,7 @@
                                 <td><?= $value->cpl ?></td>
                                 <td class="text-center" style="width: 15%">
                                     <a href="<?= site_url('capaian/edit/' . $value->ID_cpl) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                    <form action="<?= site_url('pencapaian/delete/' . $value->ID_cpl) ?>" method="POST" class="d-inline" id="del-<?= $value->ID_cpl ?>">
+                                    <form action="<?= site_url('capaian/delete/' . $value->ID_cpl) ?>" method="POST" class="d-inline" id="del-<?= $value->ID_cpl ?>">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda yakin?" data-confirm-yes="submitDel(<?= $value->ID_cpl ?>)">

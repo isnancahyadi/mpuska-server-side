@@ -90,4 +90,11 @@ class Capaian extends BaseController
 
         return redirect()->to(site_url('capaian/tampil'))->with('success', 'Data Berhasil Diupdate');
     }
+
+    public function delete($id = null)
+    {
+        $url = site_url('restapi/capaian/' . $id);
+        akses_restapi('DELETE', $url, $id);
+        return redirect()->to(site_url('capaian/tampil'))->with('success', 'Data Berhasil Dihapus');
+    }
 }

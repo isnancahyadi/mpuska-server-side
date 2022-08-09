@@ -99,6 +99,12 @@ class Capaian extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $data = $this->cpl->where('ID_cpl', $id)->findAll();
+        if ($data) {
+            $this->cpl->delete($id);
+            return $this->respondDeleted('Data berhasil dihapus');
+        } else {
+            return $this->failNotFound('Data tidak ditemukan');
+        }
     }
 }
