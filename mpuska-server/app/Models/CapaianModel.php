@@ -51,4 +51,14 @@ class CapaianModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getSpecified($id)
+    {
+        $builder = $this->db->table('cpl');
+        $builder->where('ID_cpl', $id);
+
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }

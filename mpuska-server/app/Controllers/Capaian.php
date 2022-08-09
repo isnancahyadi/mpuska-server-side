@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\CapaianModel;
 
 class Capaian extends BaseController
 {
@@ -50,5 +51,21 @@ class Capaian extends BaseController
         akses_restapi('POST', $url, $data);
 
         return redirect()->to(site_url('capaian/tampil'))->with('success', 'Data Berhasil Disimpan');
+    }
+
+    public function edit($id = null)
+    {
+        if ($id != null) {
+            $this->cpl = new CapaianModel();
+            $data['cpl'] = $this->cpl->getSpecified($id);
+
+            if ($this->cpl->affectedRows() > 0) {
+                return view('pencapaian/edit', $data);
+            } else {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 }

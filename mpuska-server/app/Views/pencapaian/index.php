@@ -54,7 +54,7 @@
                                 <td>CPL <?= $value->ID_cpl ?></td>
                                 <td><?= $value->cpl ?></td>
                                 <td class="text-center" style="width: 15%">
-                                    <a href="<?= site_url('pencapaian/edit/' . $value->ID_cpl) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="<?= site_url('capaian/edit/' . $value->ID_cpl) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <form action="<?= site_url('pencapaian/delete/' . $value->ID_cpl) ?>" method="POST" class="d-inline" id="del-<?= $value->ID_cpl ?>">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">
