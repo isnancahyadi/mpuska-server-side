@@ -26,6 +26,9 @@
     <ul class="dropdown-menu">
         <li><a class="nav-link" href="<?= site_url('pengampu/tampil') ?>">Pengampu</a></li>
     </ul>
+    <ul class="dropdown-menu">
+        <li><a class="nav-link" href="<?= site_url('capaianmk/tampil') ?>">Pencapaian Matakuliah</a></li>
+    </ul>
 </li>
 <li><a href="<?= site_url('capaian/tampil') ?>" class="nav-link"><i class="fas fa-bullseye"></i><span>Pencapaian Lulusan</span></a></li>
 <!-- <li class="nav-item dropdown">
