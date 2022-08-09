@@ -68,4 +68,26 @@ class Capaian extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
+
+    public function update($id = null)
+    {
+        $validate = $this->validate([
+            'cpl' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'CPL tidak boleh kosong'
+                ],
+            ],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
+
+        $data = $this->request->getPost();
+        $url = site_url('restapi/capaian/' . $id);
+        akses_restapi('PUT', $url, $data);
+
+        return redirect()->to(site_url('capaian/tampil'))->with('success', 'Data Berhasil Diupdate');
+    }
 }

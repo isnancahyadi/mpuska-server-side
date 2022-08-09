@@ -77,7 +77,19 @@ class Capaian extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getRawInput();
+        $data['ID_cpl'] = $id;
+
+        $isExists = $this->cpl->where('ID_cpl', $id)->getAll();
+        if (!$isExists) {
+            return $this->failNotFound('Data tidak ditemukan untuk ID CPL ' . $id);
+        }
+
+        if ($this->cpl->update($id, $data)) {
+            return $this->respondUpdated('Data berhasil diupdate');
+        } else {
+            return $this->fail($this->cpl->errors());
+        }
     }
 
     /**
