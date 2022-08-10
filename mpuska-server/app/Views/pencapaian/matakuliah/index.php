@@ -71,7 +71,7 @@
                                     <?php endforeach ?>
                                 </td>
                                 <td class="text-center" style="width: 15%">
-                                    <a href="<?= site_url('capaian/edit/' . $value->kode_matkul) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="<?= site_url('capaianmk/edit/' . $value->kode_matkul) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <form action="<?= site_url('capaian/delete/' . $value->kode_matkul) ?>" method="POST" class="d-inline" id="del-<?= $value->kode_matkul ?>">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">

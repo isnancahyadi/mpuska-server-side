@@ -3,11 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\CapaianMkModel;
 use App\Models\CapaianModel;
 use App\Models\MatakuliahModel;
 
+// use CodeIgniter\API\ResponseTrait;
+
 class CapaianMk extends BaseController
 {
+    // use ResponseTrait;
     function __construct()
     {
         helper(['restclient']);
@@ -82,5 +86,30 @@ class CapaianMk extends BaseController
 
         return redirect()->to(site_url('capaianmk/tampil'))->with('success', 'Data Berhasil Disimpan');
         //var_dump($data['cpmk']);
+    }
+
+    public function edit($id = null)
+    {
+        if ($id != null) {
+            $this->cpmk = new CapaianMkModel();
+            $data['cpmk'] = $this->cpmk->getSpecifiedCourse($id);
+            $data['cpl'] = $this->cpl->getAll();
+            $data['matkul'] = $this->matkul->getAll();
+            //var_dump($data);
+
+            if ($this->cpmk->affectedRows() > 0) {
+                foreach ($data['cpmk'] as $key => $value) {
+                    $value->capaian_lulusan = $this->cpmk->getCpl($id);
+                    $value->capaian_matakuliah = $this->cpmk->getCpmk($id);
+                }
+                return view('pencapaian/matakuliah/edit', $data);
+            } else {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+
+            // return $this->respond($data);
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 }

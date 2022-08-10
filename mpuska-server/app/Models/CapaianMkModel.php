@@ -59,6 +59,20 @@ class CapaianMkModel extends Model
         return $query->getResult();
     }
 
+    function getSpecifiedCourse($id)
+    {
+        $builder = $this->db->table('matakuliah');
+        $builder->select('matakuliah.kode_matkul, matakuliah.nama');
+        $builder->join('capaian_lulusan', 'matakuliah.kode_matkul = capaian_lulusan.kode_matkul');
+        $builder->join('cpl', 'capaian_lulusan.ID_cpl = cpl.ID_cpl');
+        $builder->join('cpmk', 'matakuliah.kode_matkul = cpmk.kode_matkul');
+        $builder->where('matakuliah.kode_matkul', $id);
+        $builder->groupBy('matakuliah.kode_matkul');
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     function getCpl($id)
     {
         $builder = $this->db->table('matakuliah');
