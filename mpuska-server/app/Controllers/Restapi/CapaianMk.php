@@ -10,6 +10,7 @@ class CapaianMk extends ResourceController
 {
     function __construct()
     {
+        $this->db = \Config\Database::connect();
         $this->cpmk = new CapaianMkModel();
     }
     /**
@@ -56,7 +57,38 @@ class CapaianMk extends ResourceController
      */
     public function create()
     {
-        //
+        $data = $this->request->getPost();
+
+        //$this->cpmk->insert($data['cpmk']);
+        // $data['cpmk'] = json_encode($data['cpmk']);
+        // $data['cpmk'] = htmlspecialchars_decode($data['cpmk']);
+        $cpl = explode(",", $data['cpmk']);
+        //$cpl = json_encode($cpl);
+        // var_dump($cpl);
+
+        foreach ($data['ID_cpl'] as $keyCpl => $valueCpl) {
+            $batchDataCpl[] = [
+                'kode_matkul' => $data['kode_matkul'],
+                'ID_cpl' => (int)$data['ID_cpl'][$keyCpl]
+            ];
+        }
+
+        foreach ($cpl as $keyCpmk => $valueCpmk) {
+            $batchDataCpmk[] = [
+                'kode_matkul' => $data['kode_matkul'],
+                'cpmk' => $cpl[$keyCpmk]
+            ];
+        }
+        //var_dump($batchDataCpmk);
+
+        // //var_dump($batchDataCpl);
+
+        $queryCpl = $this->db->table('capaian_lulusan');
+        $queryCpl->insertBatch($batchDataCpl);
+        $queryCpmk = $this->db->table('cpmk');
+        $queryCpmk->insertBatch($batchDataCpmk);
+
+        return $this->respondCreated('Data berhasil ditambahkan');
     }
 
     /**

@@ -59,7 +59,7 @@
                                 <td>
                                     <?php foreach ($value->capaian_lulusan as $k => $v) : ?>
                                         <ul>
-                                            <li><?= $v->cpl . ". [CPL " . $k + 1 . "]" ?></li>
+                                            <li><?= $v->cpl . ". [CPL " . $v->ID_cpl . "]" ?></li>
                                         </ul>
                                     <?php endforeach ?>
                                 </td>

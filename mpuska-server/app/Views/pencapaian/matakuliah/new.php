@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label>Capaian Pembelajaran Lulusan (CPL) *</label>
-                        <select name="ID_cpl" class="form-control select2 <?= isset($errors['ID_cpl']) ? 'is-invalid' : null ?>" multiple="">
+                        <select name="ID_cpl[]" class="form-control select2 <?= isset($errors['ID_cpl']) ? 'is-invalid' : null ?>" multiple="">
 
                             <?php foreach ($cpl as $key => $value) : ?>
                                 <option value="<?= $value->ID_cpl ?>" <?= old('ID_cpl') == $value->ID_cpl ? 'selected' : null ?>>

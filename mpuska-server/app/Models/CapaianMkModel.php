@@ -14,7 +14,7 @@ class CapaianMkModel extends Model
     protected $returnType       = 'object';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['cpmk'];
+    protected $allowedFields    = ['kode_matkul', 'cpmk'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -25,9 +25,11 @@ class CapaianMkModel extends Model
 
     // Validation
     protected $validationRules      = [
+        'kode_matkul' => 'required',
         'cpmk' => 'required'
     ];
     protected $validationMessages   = [
+        'kode_matkul' => ['required' => 'Kode matakuliah tidak boleh kosong'],
         'cpmk' => ['required' => 'CPMK tidak boleh kosong']
     ];
     // protected $skipValidation       = false;
@@ -50,8 +52,7 @@ class CapaianMkModel extends Model
         $builder->select('matakuliah.kode_matkul, matakuliah.nama');
         $builder->join('capaian_lulusan', 'matakuliah.kode_matkul = capaian_lulusan.kode_matkul');
         $builder->join('cpl', 'capaian_lulusan.ID_cpl = cpl.ID_cpl');
-        $builder->join('capaian_matakuliah', 'matakuliah.kode_matkul = capaian_matakuliah.kode_matkul');
-        $builder->join('cpmk', 'capaian_matakuliah.ID_cpmk = cpmk.ID_cpmk');
+        $builder->join('cpmk', 'matakuliah.kode_matkul = cpmk.kode_matkul');
         $builder->groupBy('matakuliah.kode_matkul');
 
         $query = $builder->get();
@@ -74,8 +75,7 @@ class CapaianMkModel extends Model
     {
         $builder = $this->db->table('matakuliah');
         $builder->select('cpmk.ID_cpmk, cpmk.cpmk');
-        $builder->join('capaian_matakuliah', 'matakuliah.kode_matkul = capaian_matakuliah.kode_matkul');
-        $builder->join('cpmk', 'capaian_matakuliah.ID_cpmk = cpmk.ID_cpmk');
+        $builder->join('cpmk', 'matakuliah.kode_matkul = cpmk.kode_matkul');
         $builder->where('matakuliah.kode_matkul', $id);
 
         $query = $builder->get();
