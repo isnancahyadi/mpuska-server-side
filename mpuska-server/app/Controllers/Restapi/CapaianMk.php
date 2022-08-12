@@ -37,7 +37,14 @@ class CapaianMk extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $getCourse = $this->cpmk->getSpecifiedCourse($id);
+
+        foreach ($getCourse as $key => $value) {
+            $value->capaian_lulusan = $this->cpmk->getCpl($value->kode_matkul);
+            $value->capaian_matakuliah = $this->cpmk->getCpmk($value->kode_matkul);
+        }
+
+        return $this->respond($getCourse);
     }
 
     /**
@@ -108,7 +115,48 @@ class CapaianMk extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getRawInput();
+
+        $cpmk = explode(",", $data['cpmk']);
+
+        // $this->cpmk->getSpecifiedCourse($id);
+        if ($this->cpmk->getSpecifiedCourse($id)) {
+            foreach ($data['cpl'] as $keyCpl => $valueCpl) {
+                $vpcl[] = explode(",", $valueCpl);
+                // $batchDataCpl[] = [
+                //     'KEY_cpl' => $data['KEY_cpl'][$keyCpl],
+                //     'kode_matkul' => $data['kode_matkul'],
+                //     'ID_cpl' => (int)$data['ID_cpl'][$keyCpl]
+                // ];
+            }
+            foreach ($vpcl as $k => $v) {
+                $batchDataCpl[] = [
+                    'kode_matkul' => $data['kode_matkul'],
+                    'KEY_cpl' => $v[1],
+                    'ID_cpl' => $v[0]
+                ];
+            }
+
+            foreach ($cpmk as $keyCpmk => $valueCpmk) {
+                $batchDataCpmk[] = [
+                    'kode_matkul' => $data['kode_matkul'],
+                    'cpmk' => $cpmk[$keyCpmk]
+                ];
+            }
+
+            //return $this->respond($batchDataCpmk);
+
+            //var_dump($data);
+
+            $queryCpl = $this->db->table('capaian_lulusan');
+            $queryCpl->updateBatch($batchDataCpl, 'KEY_cpl');
+            $queryCpmk = $this->db->table('cpmk');
+            $queryCpmk->updateBatch($batchDataCpmk, 'kode_matkul');
+
+            return $this->respondUpdated('Data berhasil diupdate');
+        } else {
+            return $this->failNotFound('Data tidak ditemukan untuk kode matakuliah ' . $id);
+        }
     }
 
     /**

@@ -21,7 +21,7 @@
             <div class="card-body col-md-6">
                 <?php $validation = \Config\Services::validation() ?>
                 <?php foreach ($cpmk as $key => $value) : ?>
-                    <form action="<?= site_url('capaianmk/store') ?>" method="POST" autocomplete="off">
+                    <form action="<?= site_url('capaianmk/update/' . $value->kode_matkul) ?>" method="POST" autocomplete="off">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
@@ -40,13 +40,20 @@
                         </div>
                         <div class="form-group">
                             <label>Capaian Pembelajaran Lulusan (CPL) *</label>
-                            <select name="ID_cpl[]" class="form-control select2 <?= isset($errors['ID_cpl']) ? 'is-invalid' : null ?>" multiple="">
+                            <select name="cpl[]" class="form-control select2 <?= isset($errors['ID_cpl']) ? 'is-invalid' : null ?>" multiple="">
 
+                                <?php foreach ($value->capaian_lulusan as $key => $value) {
+                                    $KEY_cpl[] = $value->KEY_cpl;
+                                    $ID_cpl[] = $value->ID_cpl;
+                                }
+                                ?>
                                 <?php foreach ($cpl as $k => $v) : ?>
-                                    <option value="<?= $v->ID_cpl ?>" <?php foreach ($value->capaian_lulusan as $cl => $vcl) : ?> <?= old('ID_cpl', $vcl->ID_cpl) == $v->ID_cpl ? 'selected' : null ?> <?php endforeach ?>>
+
+                                    <option value="<?= $v->ID_cpl ?>,<?= $KEY_cpl ?>" <?= old('ID_cpl', $ID_cpl) == $v->ID_cpl ? 'selected' : null ?>>
                                         <?= "CPL " . $v->ID_cpl . " - " . $v->cpl ?>
                                     </option>
                                 <?php endforeach ?>
+
                                 <div class="invalid-feedback">
                                     <?= isset($errors['ID_cpl']) ? $errors['ID_cpl'] : null ?>
                                 </div>

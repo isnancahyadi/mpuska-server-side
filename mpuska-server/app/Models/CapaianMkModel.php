@@ -76,7 +76,7 @@ class CapaianMkModel extends Model
     function getCpl($id)
     {
         $builder = $this->db->table('matakuliah');
-        $builder->select('cpl.ID_cpl, cpl.cpl');
+        $builder->select('capaian_lulusan.KEY_cpl, cpl.ID_cpl, cpl.cpl');
         $builder->join('capaian_lulusan', 'matakuliah.kode_matkul = capaian_lulusan.kode_matkul');
         $builder->join('cpl', 'capaian_lulusan.ID_cpl = cpl.ID_cpl');
         $builder->where('matakuliah.kode_matkul', $id);

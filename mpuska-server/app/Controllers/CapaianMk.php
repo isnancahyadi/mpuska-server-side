@@ -7,11 +7,11 @@ use App\Models\CapaianMkModel;
 use App\Models\CapaianModel;
 use App\Models\MatakuliahModel;
 
-// use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\API\ResponseTrait;
 
 class CapaianMk extends BaseController
 {
-    // use ResponseTrait;
+    use ResponseTrait;
     function __construct()
     {
         helper(['restclient']);
@@ -93,8 +93,14 @@ class CapaianMk extends BaseController
         if ($id != null) {
             $this->cpmk = new CapaianMkModel();
             $data['cpmk'] = $this->cpmk->getSpecifiedCourse($id);
+            // $builderCpl = $this->db->table('cpl');
+            // $builderCpl->select('capaian_lulusan.KEY_cpl, cpl.ID_cpl, cpl.cpl');
+            // $builderCpl->join('capaian_lulusan', 'cpl.ID_cpl = capaian_lulusan.ID_cpl');
+            // $queryCpl = $builderCpl->get();
+
             $data['cpl'] = $this->cpl->getAll();
             $data['matkul'] = $this->matkul->getAll();
+            //return $this->respond($data['cpl']);
             //var_dump($data);
 
             if ($this->cpmk->affectedRows() > 0) {
@@ -111,5 +117,41 @@ class CapaianMk extends BaseController
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+    }
+
+    public function update($id = null)
+    {
+        $validate = $this->validate([
+            'kode_matkul' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kode matakuliah tidak boleh kosong'
+                ],
+            ],
+            'cpl' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'CPL tidak boleh kosong'
+                ],
+            ],
+            'cpmk' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'CPMK tidak boleh kosong'
+                ],
+            ],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
+
+        $data = $this->request->getPost();
+        return $this->respond($data);
+        //var_dump($data);
+        $url = site_url('restapi/capaianmk/' . $id);
+        akses_restapi('PUT', $url, $data);
+
+        return redirect()->to(site_url('capaianmk/tampil'))->with('success', 'Data Berhasil Diupdate');
     }
 }
