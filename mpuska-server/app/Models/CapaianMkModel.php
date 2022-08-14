@@ -95,4 +95,30 @@ class CapaianMkModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getAchievementsCpmk($id, $idCpmk)
+    {
+        $builder = $this->db->table('ketercapaian_cpmk');
+        $builder->select('pengampu.ID_pengampu, pengampu.kode_matkul, ketercapaian_cpmk.ID_cpmk, asesmen.nama');
+        $builder->join('pengampu', 'ketercapaian_cpmk.ID_pengampu = pengampu.ID_pengampu');
+        $builder->join('asesmen', 'ketercapaian_cpmk.ID_asesmen = asesmen.ID_asesmen');
+        $builder->where('ketercapaian_cpmk.ID_pengampu', $id);
+        $builder->where('ketercapaian_cpmk.ID_cpmk', $idCpmk);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    function getScoreByCpmk($id, $idCpmk)
+    {
+        $builder = $this->db->table('ketercapaian_cpmk');
+        $builder->select('asesmen.nama, nilai.bobot, nilai.nilai');
+        $builder->join('asesmen', 'ketercapaian_cpmk.ID_asesmen = asesmen.ID_asesmen');
+        $builder->join('nilai', 'asesmen.ID_asesmen = nilai.ID_asesmen');
+        $builder->where('ketercapaian_cpmk.ID_cpmk', $idCpmk);
+        $builder->where('nilai.ID_krs', $id);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers\Restapi;
 
 use App\Controllers\BaseController;
+use App\Models\CapaianMkModel;
 use App\Models\KhsModel;
 use CodeIgniter\API\ResponseTrait;
 
@@ -13,6 +14,7 @@ class Khs extends BaseController
     function __construct()
     {
         $this->khs = new KhsModel();
+        $this->cpmk = new CapaianMkModel();
     }
 
     public function index()
@@ -205,5 +207,31 @@ class Khs extends BaseController
         $builder->insert($data);
 
         return $this->respondCreated('Data berhasil terkonversi');
+    }
+
+    public function getAchievements($id)
+    {
+        $post = $this->request->getPost();
+
+        // $data = $this->khs->getSpecifiedPengampu($id, $post['nim']);
+        // return $this->respond($data);
+
+
+        $data = $this->cpmk->getAchievementsCpmk($id, (int)$post['ID_cpmk']);
+
+        // foreach ($getCourse as $key => $value) {
+        //     $value->ketercapaian_cpmk = $this->cpmk->getAchievementsByCpmk($value->ID_cpmk);
+        // }
+
+        return $this->respond($data);
+    }
+
+    public function getAchievementsScore($id)
+    {
+        $post = $this->request->getPost();
+
+        $data = $this->cpmk->getScoreByCpmk($id, (int)$post['ID_cpmk']);
+
+        return $this->respond($data);
     }
 }

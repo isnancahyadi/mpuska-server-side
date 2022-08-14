@@ -59,6 +59,8 @@ $routes->get('restapi/khs/searchcourse/(:num)', 'RestApi\Khs::searchCourse/$1');
 $routes->get('restapi/khs/searchmhsincourseconv/(:num)', 'RestApi\Khs::searchMhsInCourseConv/$1');
 $routes->get('restapi/khs/getkonversion/(:num)', 'RestApi\Khs::getKonversion/$1');
 $routes->post('restapi/khs/addkhsconv', 'RestApi\Khs::addKhsConv');
+$routes->post('restapi/khs/getachievements/(:num)', 'RestApi\Khs::getAchievements/$1');
+$routes->post('restapi/khs/getachievementsscore/(:num)', 'RestApi\Khs::getAchievementsScore/$1');
 
 /*
  * --------------------------------------------------------------------
