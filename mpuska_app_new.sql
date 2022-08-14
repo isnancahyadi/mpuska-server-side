@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2022 at 03:31 AM
+-- Generation Time: Aug 14, 2022 at 08:55 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -93,6 +93,42 @@ INSERT INTO `asesmen` (`ID_asesmen`, `nama`) VALUES
 (6, 'Ujian Tengah Semester'),
 (7, 'Uji Kompetensi'),
 (8, 'Presentasi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `capaian_lulusan`
+--
+
+CREATE TABLE `capaian_lulusan` (
+  `KEY_cpl` int(11) NOT NULL,
+  `kode_matkul` varchar(9) NOT NULL,
+  `ID_cpl` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `capaian_lulusan`
+--
+
+INSERT INTO `capaian_lulusan` (`KEY_cpl`, `kode_matkul`, `ID_cpl`) VALUES
+(17, '1970530', 4),
+(18, '1970530', 6),
+(1, '211840131', 3),
+(2, '211840131', 4),
+(6, '211860120', 5),
+(5, '211860120', 6),
+(3, '211860220', 3),
+(4, '211860220', 6),
+(8, '211860731', 3),
+(7, '211860731', 8),
+(9, '211870420', 1),
+(10, '211870420', 2),
+(11, '211870620', 4),
+(12, '211870620', 6),
+(13, '211870820', 1),
+(14, '211870820', 7),
+(16, '3370420', 4),
+(15, '3370420', 7);
 
 -- --------------------------------------------------------
 
@@ -211,7 +247,7 @@ INSERT INTO `ca_nama_mahasiswa` (`nim`, `nama_depan`, `nama_tengah`, `nama_belak
 --
 
 CREATE TABLE `cpl` (
-  `kode_matkul` varchar(9) NOT NULL,
+  `ID_cpl` int(3) NOT NULL,
   `cpl` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -219,9 +255,15 @@ CREATE TABLE `cpl` (
 -- Dumping data for table `cpl`
 --
 
-INSERT INTO `cpl` (`kode_matkul`, `cpl`) VALUES
-('211840131', 'aaaaa bbb ccccc ddd'),
-('211840131', 'eeeeeee ff gggg hhhhh');
+INSERT INTO `cpl` (`ID_cpl`, `cpl`) VALUES
+(1, 'Menjunjung tinggi nilai kemanusiaan dalam menjalankan tugas, memiliki kepekaan sosial dan bertanggung jawab secara individu dan berkelompok di bidang keahliannya'),
+(2, 'Menginternalisasi semangat kemandirian, kejuangan, dan kewirausahaan'),
+(3, 'Mampu menerapkan konsep teoritis bidang area Informatika terkait matematika dasar dan ilmu komputer untuk memodelkan masalah dan meningkatkan produktivitas'),
+(4, 'Mampu berpikir logis, kritis, sistematis dan inovatif, dan mampu mengambil keputusan secara tepat di bidang keahliannya'),
+(5, 'Mampu mengkaji / menganalisis implikasi pengembangan atau implementasi ilmu pengetahuan teknologi, menyusun deskripsi saintifik hasil kajian untuk pemecahan masalah dengan mempertimbangkan multidisiplin ilmu'),
+(6, 'Memahami tanggung jawab profesional dan menerapkan pengetahuan serta berkomunikasi efektif dalam melakukan penilaian berdasar informasi dan praktek computing  dengan berpedoman pada prinsip-prinsip legal dan etika'),
+(7, 'Mampu memilih, membuat dan menerapakan teknik, sumber daya, penggunaan perangkat teknik modern dan implementasi teknologi informasi untuk memecahkan masalah'),
+(8, 'Mampu merancang dan mengimplementasikan algoritma/metode dalam mengidentifikasi dan memecahkan masalah yang melibatkan perangkat lunak dan pemikiran komputasi');
 
 -- --------------------------------------------------------
 
@@ -230,6 +272,7 @@ INSERT INTO `cpl` (`kode_matkul`, `cpl`) VALUES
 --
 
 CREATE TABLE `cpmk` (
+  `ID_cpmk` int(3) NOT NULL,
   `kode_matkul` varchar(9) NOT NULL,
   `cpmk` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -238,10 +281,19 @@ CREATE TABLE `cpmk` (
 -- Dumping data for table `cpmk`
 --
 
-INSERT INTO `cpmk` (`kode_matkul`, `cpmk`) VALUES
-('211840131', 'zzzzz yy xxxxxx wwww'),
-('211840131', 'vvv uuuuuu ttt ss rrrrrrrrrr'),
-('211840131', 'qqqqqqq pp oooo nnnnn mmm');
+INSERT INTO `cpmk` (`ID_cpmk`, `kode_matkul`, `cpmk`) VALUES
+(1, '211840131', 'Mahasiswa memiliki kemampuan teoritis terkait konsep perangkat lunak, menerapkan konsep-teori dan model serta analisis dalam merancang dan membangun perangkat lunak'),
+(2, '211840131', 'Mahasiswa mampu menganalisis rancangan sistem untuk memecahkan masalah dalam lingkup pengembangan perangkat lunak'),
+(3, '211860220', 'Mahasiswa mampu menganalisis kebutuhan sistem untuk memecahkan masalah dalam lingkup sosial'),
+(6, '211860120', 'aaaaaaaaaa'),
+(7, '211860120', 'bbbbbbbbb'),
+(8, '211860731', 'bbbbbbbbbbb'),
+(9, '211870420', '['),
+(10, '211870620', '[\"hhhhhhhh,iiiiiiii\"]'),
+(11, '211870820', '[\"zzzzzz,xxxxxxx\"]'),
+(12, '3370420', '[\"aaaaaaaaaa,bbbbbbbbb\"]'),
+(13, '1970530', 'asdasdasd'),
+(14, '1970530', 'qweqweqwewq');
 
 -- --------------------------------------------------------
 
@@ -320,6 +372,30 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ketercapaian_cpmk`
+--
+
+CREATE TABLE `ketercapaian_cpmk` (
+  `ID_pengampu` int(11) NOT NULL,
+  `ID_asesmen` int(11) NOT NULL,
+  `ID_cpmk` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ketercapaian_cpmk`
+--
+
+INSERT INTO `ketercapaian_cpmk` (`ID_pengampu`, `ID_asesmen`, `ID_cpmk`) VALUES
+(1, 2, 1),
+(1, 3, 1),
+(1, 5, 2),
+(1, 6, 2),
+(1, 5, 1),
+(1, 2, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `khs`
 --
 
@@ -335,8 +411,8 @@ CREATE TABLE `khs` (
 --
 
 INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `grade`) VALUES
-(1, 8, 83, 'A'),
-(2, 9, 0, 'E'),
+(1, 8, 59, 'C+'),
+(2, 9, 80.5, 'A'),
 (3, 10, 0, 'E'),
 (4, 11, 0, 'E'),
 (5, 12, 0, 'E'),
@@ -369,7 +445,22 @@ INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `grade`) VALUES
 (32, 39, 0, 'E'),
 (33, 40, 0, 'E'),
 (34, 41, 0, 'E'),
-(35, 42, 0, 'E');
+(35, 42, 0, 'E'),
+(36, 43, 0, 'E'),
+(37, 44, 0, 'E'),
+(38, 45, 0, 'E'),
+(39, 46, 0, 'E'),
+(40, 47, 0, 'E'),
+(41, 48, 0, 'E'),
+(42, 49, 0, 'E'),
+(43, 50, 0, 'E'),
+(44, 51, 0, 'E'),
+(45, 52, 0, 'E'),
+(46, 53, 0, 'E'),
+(47, 54, 0, 'E'),
+(48, 55, 0, 'E'),
+(49, 56, 0, 'E'),
+(50, 57, 0, 'E');
 
 -- --------------------------------------------------------
 
@@ -380,10 +471,22 @@ INSERT INTO `khs` (`ID_khs`, `ID_krs`, `nilai`, `grade`) VALUES
 CREATE TABLE `khs_konv` (
   `ID_konv` int(11) NOT NULL,
   `ID_krs` int(11) NOT NULL,
-  `kode_matkul_konv` varchar(9) NOT NULL,
-  `nilai` int(3) NOT NULL DEFAULT 0,
-  `huruf` varchar(2) NOT NULL DEFAULT 'E'
+  `kode_matkul_konv` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `khs_konv`
+--
+
+INSERT INTO `khs_konv` (`ID_konv`, `ID_krs`, `kode_matkul_konv`) VALUES
+(1, 43, '211810630'),
+(2, 44, '211810630'),
+(3, 45, '211860330'),
+(4, 46, '211810630'),
+(5, 47, '211860330'),
+(6, 48, '211810630'),
+(7, 49, '211810630'),
+(8, 56, '211860330');
 
 -- --------------------------------------------------------
 
@@ -433,20 +536,35 @@ CREATE TABLE `krs` (
 
 INSERT INTO `krs` (`ID_krs`, `nim`, `ID_pengampu`) VALUES
 (8, '1800018164', 1),
+(43, '1800018164', 4),
 (9, '1800018167', 1),
+(44, '1800018167', 4),
 (10, '1800018172', 1),
+(45, '1800018172', 4),
 (11, '1800018182', 1),
+(46, '1800018182', 4),
 (12, '1800018200', 1),
+(47, '1800018200', 4),
 (13, '1800018206', 1),
+(48, '1800018206', 4),
 (14, '1800018216', 1),
+(49, '1800018216', 4),
 (15, '1800018222', 1),
+(50, '1800018222', 4),
 (16, '1800018224', 1),
+(51, '1800018224', 4),
 (17, '1800018243', 1),
+(52, '1800018243', 4),
 (18, '1800018271', 1),
+(53, '1800018271', 4),
 (19, '1800018272', 1),
+(54, '1800018272', 4),
 (20, '1800018280', 1),
+(55, '1800018280', 4),
 (21, '1800018282', 1),
+(56, '1800018282', 4),
 (22, '1800018283', 1),
+(57, '1800018283', 4),
 (23, '1800018285', 1),
 (24, '1800018286', 1),
 (25, '1800018288', 1),
@@ -637,43 +755,43 @@ CREATE TABLE `nilai` (
 --
 
 INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALUES
-(1, 8, 1, 15, 100),
-(1, 9, 1, 15, 0),
-(1, 10, 1, 15, 0),
-(1, 11, 1, 15, 0),
-(1, 12, 1, 15, 0),
-(1, 13, 1, 15, 0),
-(1, 14, 1, 15, 0),
-(1, 15, 1, 15, 90),
-(1, 16, 1, 15, 0),
-(1, 17, 1, 15, 0),
-(1, 18, 1, 15, 0),
-(1, 19, 1, 15, 0),
-(1, 20, 1, 15, 0),
-(1, 21, 1, 15, 0),
-(1, 22, 1, 15, 0),
-(1, 23, 1, 15, 0),
-(1, 24, 1, 15, 0),
-(1, 25, 1, 15, 0),
-(1, 26, 1, 15, 0),
-(1, 27, 1, 15, 0),
-(1, 28, 1, 15, 0),
-(1, 29, 1, 15, 0),
-(1, 30, 1, 15, 0),
-(1, 31, 1, 15, 0),
-(1, 32, 1, 15, 0),
-(1, 33, 1, 15, 0),
-(1, 34, 1, 15, 0),
-(1, 35, 1, 15, 0),
-(1, 36, 1, 15, 0),
-(1, 37, 1, 15, 95),
-(1, 38, 1, 15, 0),
-(1, 39, 1, 15, 0),
-(1, 40, 1, 15, 0),
-(1, 41, 1, 15, 0),
-(1, 42, 1, 15, 0),
-(2, 8, 3, 20, 95),
-(2, 9, 3, 20, 0),
+(1, 8, 2, 15, 90),
+(1, 9, 2, 15, 70),
+(1, 10, 2, 15, 0),
+(1, 11, 2, 15, 0),
+(1, 12, 2, 15, 0),
+(1, 13, 2, 15, 0),
+(1, 14, 2, 15, 0),
+(1, 15, 2, 15, 90),
+(1, 16, 2, 15, 0),
+(1, 17, 2, 15, 0),
+(1, 18, 2, 15, 0),
+(1, 19, 2, 15, 0),
+(1, 20, 2, 15, 0),
+(1, 21, 2, 15, 0),
+(1, 22, 2, 15, 0),
+(1, 23, 2, 15, 0),
+(1, 24, 2, 15, 0),
+(1, 25, 2, 15, 0),
+(1, 26, 2, 15, 0),
+(1, 27, 2, 15, 0),
+(1, 28, 2, 15, 0),
+(1, 29, 2, 15, 0),
+(1, 30, 2, 15, 0),
+(1, 31, 2, 15, 0),
+(1, 32, 2, 15, 0),
+(1, 33, 2, 15, 0),
+(1, 34, 2, 15, 0),
+(1, 35, 2, 15, 0),
+(1, 36, 2, 15, 0),
+(1, 37, 2, 15, 95),
+(1, 38, 2, 15, 0),
+(1, 39, 2, 15, 0),
+(1, 40, 2, 15, 0),
+(1, 41, 2, 15, 0),
+(1, 42, 2, 15, 0),
+(2, 8, 3, 20, 80),
+(2, 9, 3, 20, 65),
 (2, 10, 3, 20, 0),
 (2, 11, 3, 20, 0),
 (2, 12, 3, 20, 0),
@@ -707,8 +825,8 @@ INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALU
 (2, 40, 3, 20, 0),
 (2, 41, 3, 20, 0),
 (2, 42, 3, 20, 0),
-(3, 8, 6, 30, 70),
-(3, 9, 6, 30, 0),
+(3, 8, 6, 30, 40),
+(3, 9, 6, 30, 85),
 (3, 10, 6, 30, 0),
 (3, 11, 6, 30, 0),
 (3, 12, 6, 30, 0),
@@ -742,8 +860,8 @@ INSERT INTO `nilai` (`KEY_nilai`, `ID_krs`, `ID_asesmen`, `bobot`, `nilai`) VALU
 (3, 40, 6, 30, 0),
 (3, 41, 6, 30, 0),
 (3, 42, 6, 30, 0),
-(4, 8, 5, 35, 80),
-(4, 9, 5, 35, 0),
+(4, 8, 5, 35, 50),
+(4, 9, 5, 35, 90),
 (4, 10, 5, 35, 0),
 (4, 11, 5, 35, 0),
 (4, 12, 5, 35, 0),
@@ -825,7 +943,8 @@ CREATE TABLE `pengampu` (
 INSERT INTO `pengampu` (`ID_pengampu`, `niy_nip`, `kode_matkul`, `kelas`, `thn_ajaran`) VALUES
 (1, '12345678', '211840131', 'A', '2021/2022'),
 (2, '12345678', '211840131', 'C', '2021/2022'),
-(3, '12345678', '211860220', 'B', '2021/2022');
+(3, '12345678', '211860220', 'B', '2021/2022'),
+(4, '12345678', '1970530', 'E', '2021/2022');
 
 --
 -- Indexes for dumped tables
@@ -845,6 +964,14 @@ ALTER TABLE `asesmen`
   ADD PRIMARY KEY (`ID_asesmen`);
 
 --
+-- Indexes for table `capaian_lulusan`
+--
+ALTER TABLE `capaian_lulusan`
+  ADD PRIMARY KEY (`KEY_cpl`),
+  ADD KEY `kode_matkul` (`kode_matkul`,`ID_cpl`),
+  ADD KEY `ID_cpl` (`ID_cpl`);
+
+--
 -- Indexes for table `ca_nama_dosen`
 --
 ALTER TABLE `ca_nama_dosen`
@@ -860,12 +987,13 @@ ALTER TABLE `ca_nama_mahasiswa`
 -- Indexes for table `cpl`
 --
 ALTER TABLE `cpl`
-  ADD KEY `kode_matkul` (`kode_matkul`);
+  ADD PRIMARY KEY (`ID_cpl`);
 
 --
 -- Indexes for table `cpmk`
 --
 ALTER TABLE `cpmk`
+  ADD PRIMARY KEY (`ID_cpmk`),
   ADD KEY `kode_matkul` (`kode_matkul`);
 
 --
@@ -874,6 +1002,14 @@ ALTER TABLE `cpmk`
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`niy_nip`),
   ADD KEY `ID_akun` (`ID_akun`);
+
+--
+-- Indexes for table `ketercapaian_cpmk`
+--
+ALTER TABLE `ketercapaian_cpmk`
+  ADD KEY `ID_asesmen` (`ID_asesmen`,`ID_cpmk`),
+  ADD KEY `ID_cpmk` (`ID_cpmk`),
+  ADD KEY `ID_pengampu` (`ID_pengampu`);
 
 --
 -- Indexes for table `khs`
@@ -956,32 +1092,57 @@ ALTER TABLE `asesmen`
   MODIFY `ID_asesmen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `capaian_lulusan`
+--
+ALTER TABLE `capaian_lulusan`
+  MODIFY `KEY_cpl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `cpl`
+--
+ALTER TABLE `cpl`
+  MODIFY `ID_cpl` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `cpmk`
+--
+ALTER TABLE `cpmk`
+  MODIFY `ID_cpmk` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `khs`
 --
 ALTER TABLE `khs`
-  MODIFY `ID_khs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID_khs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `khs_konv`
 --
 ALTER TABLE `khs_konv`
-  MODIFY `ID_konv` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_konv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `krs`
 --
 ALTER TABLE `krs`
-  MODIFY `ID_krs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ID_krs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `pengampu`
 --
 ALTER TABLE `pengampu`
-  MODIFY `ID_pengampu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_pengampu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `capaian_lulusan`
+--
+ALTER TABLE `capaian_lulusan`
+  ADD CONSTRAINT `capaian_lulusan_ibfk_1` FOREIGN KEY (`kode_matkul`) REFERENCES `matakuliah` (`kode_matkul`),
+  ADD CONSTRAINT `capaian_lulusan_ibfk_2` FOREIGN KEY (`ID_cpl`) REFERENCES `cpl` (`ID_cpl`);
 
 --
 -- Constraints for table `ca_nama_dosen`
@@ -996,12 +1157,6 @@ ALTER TABLE `ca_nama_mahasiswa`
   ADD CONSTRAINT `ca_nama_mahasiswa_ibfk_1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`);
 
 --
--- Constraints for table `cpl`
---
-ALTER TABLE `cpl`
-  ADD CONSTRAINT `cpl_ibfk_1` FOREIGN KEY (`kode_matkul`) REFERENCES `matakuliah` (`kode_matkul`);
-
---
 -- Constraints for table `cpmk`
 --
 ALTER TABLE `cpmk`
@@ -1012,6 +1167,14 @@ ALTER TABLE `cpmk`
 --
 ALTER TABLE `dosen`
   ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`ID_akun`) REFERENCES `akun` (`ID_akun`);
+
+--
+-- Constraints for table `ketercapaian_cpmk`
+--
+ALTER TABLE `ketercapaian_cpmk`
+  ADD CONSTRAINT `ketercapaian_cpmk_ibfk_1` FOREIGN KEY (`ID_cpmk`) REFERENCES `cpmk` (`ID_cpmk`),
+  ADD CONSTRAINT `ketercapaian_cpmk_ibfk_2` FOREIGN KEY (`ID_asesmen`) REFERENCES `asesmen` (`ID_asesmen`),
+  ADD CONSTRAINT `ketercapaian_cpmk_ibfk_3` FOREIGN KEY (`ID_pengampu`) REFERENCES `pengampu` (`ID_pengampu`);
 
 --
 -- Constraints for table `khs`
