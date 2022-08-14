@@ -234,4 +234,20 @@ class Khs extends BaseController
 
         return $this->respond($data);
     }
+
+    public function addAchievements()
+    {
+        $post = $this->request->getPost();
+
+        $data = [
+            'ID_pengampu' => (int) $post['ID_pengampu'],
+            'ID_asesmen' => (int) $post['ID_asesmen'],
+            'ID_cpmk' => (int) $post['ID_cpmk']
+        ];
+
+        $builder = $this->db->table('ketercapaian_cpmk');
+        $builder->insert($data);
+
+        return $this->respondCreated('Data berhasil disimpan');
+    }
 }
